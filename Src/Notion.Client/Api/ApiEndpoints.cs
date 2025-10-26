@@ -148,5 +148,10 @@
             public static string List => "/v1/file_uploads";
             public static string Retrieve(IRetrieveFileUploadPathParameters pathParameters) => $"/v1/file_uploads/{pathParameters.FileUploadId}";
         }
+
+        public static class DataSourcesApiUrls
+        {
+            public static string Retrieve(IRetrieveDataSourcePathParameters pathParameters) => $"/v1/data_sources/{pathParameters.DataSourceId}";
+        }
     }
 }

@@ -21,5 +21,8 @@ namespace Notion.Client
 
         [EnumMember(Value = "file_upload")]
         FileUpload,
+
+        [EnumMember(Value = "data_source")]
+        DataSource,
     }
 }
