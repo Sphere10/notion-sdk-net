@@ -1,4 +1,6 @@
-﻿namespace Notion.Client
+﻿using System;
+
+namespace Notion.Client
 {
     public static class ApiEndpoints
     {
@@ -151,7 +153,9 @@
 
         public static class DataSourcesApiUrls
         {
-            public static string Retrieve(IRetrieveDataSourcePathParameters pathParameters) => $"/v1/data_sources/{pathParameters.DataSourceId}";
+            private const string BasePath = "/v1/data_sources";
+            public static string Retrieve(IRetrieveDataSourcePathParameters pathParameters) => $"{BasePath}/{pathParameters.DataSourceId}";
+            internal static string CreateDataSource() => BasePath;
         }
     }
 }

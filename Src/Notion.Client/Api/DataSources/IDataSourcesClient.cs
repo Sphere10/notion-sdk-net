@@ -15,5 +15,16 @@ namespace Notion.Client
             RetrieveDataSourceRequest request,
             CancellationToken cancellationToken = default
         );
+
+        /// <summary>
+        /// Creates a new data source.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<CreateDataSourceResponse> CreateAsync(
+            CreateDataSourceRequest request,
+            CancellationToken cancellationToken = default
+        );
     }
 }
