@@ -11,7 +11,7 @@ namespace Notion.Client
         public string Type => "dual_property";
 
         [JsonProperty("dual_property")]
-        public IDictionary<string, object> DualProperty { get; set; }
+        public Data DualProperty { get; set; }
 
         /// <summary>
         /// Additional data for future compatibility
@@ -19,5 +19,21 @@ namespace Notion.Client
         /// </summary>
         [JsonExtensionData]
         public IDictionary<string, object> AdditionalData { get; set; }
+
+        public class Data
+        {
+            [JsonProperty("synced_property_id")]
+            public string SyncedPropertyId { get; set; }
+
+            [JsonProperty("synced_property_name")]
+            public string SyncedPropertyName { get; set; }
+
+            /// <summary>
+            /// Additional data for future compatibility
+            /// If you encounter properties that are not yet supported, please open an issue on GitHub.
+            /// </summary>
+            [JsonExtensionData]
+            public IDictionary<string, object> AdditionalData { get; set; }
+        }
     }
 }
