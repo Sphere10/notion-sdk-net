@@ -156,6 +156,7 @@ namespace Notion.Client
             private const string BasePath = "/v1/data_sources";
             public static string Retrieve(IRetrieveDataSourcePathParameters pathParameters) => $"{BasePath}/{pathParameters.DataSourceId}";
             internal static string CreateDataSource() => BasePath;
+            internal static string Update(IUpdateDataSourcePathParameters pathParameters) => $"{BasePath}/{pathParameters.DataSourceId}";
         }
     }
 }
