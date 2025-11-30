@@ -48,5 +48,16 @@ namespace Notion.Client
             ListDataSourceTemplatesRequest request,
             CancellationToken cancellationToken = default
         );
+
+        /// <summary>
+        /// Queries a data source.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<QueryDataSourceResponse> QueryAsync(
+            QueryDataSourceRequest request,
+            CancellationToken cancellationToken = default
+        );
     }
 }

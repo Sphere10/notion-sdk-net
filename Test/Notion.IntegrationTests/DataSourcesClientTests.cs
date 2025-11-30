@@ -130,5 +130,52 @@ namespace Notion.IntegrationTests
             Assert.True(updateResponse.Properties.ContainsKey("Name"));
         }
 
+        // write test for query
+        [Fact]
+        public async Task QueryDataSourceAsync_ShouldReturnResults()
+        {
+            // Arrange
+            var databaseId = "29ee2842ccb5802397b8fdf6fed5ac93"; // TODO: Create a test database and set its ID here
+            var dataSourceId = await CreateAndGetDatasourceIdAsync(databaseId);
+            var queryRequest = new QueryDataSourceRequest
+            {
+                DataSourceId = dataSourceId,
+            };
+
+            // Act
+            var queryResponse = await Client.DataSources.QueryAsync(queryRequest);
+
+            // Assert
+            Assert.NotNull(queryResponse);
+            Assert.NotNull(queryResponse.Results);
+        }
+
+        private async Task<string> CreateAndGetDatasourceIdAsync(string databaseId)
+        {
+            var request = new CreateDataSourceRequest
+            {
+                Parent = new DatabaseParentRequest
+                {
+                    DatabaseId = databaseId
+                },
+                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                {
+                    {
+                        "Name",
+                        new TitlePropertyConfigurationRequest {
+                            Description = "The name of the data source",
+                            Title = new Dictionary<string, object>()
+                        }
+                    }
+                },
+                Title = new List<RichTextBaseInput>
+                {
+                    new RichTextTextInput {  Text =  new Text { Content = "Test Data Source" } }
+                }
+            };
+
+            var response = await Client.DataSources.CreateAsync(request);
+            return response.Id;
+        }
     }
 }
