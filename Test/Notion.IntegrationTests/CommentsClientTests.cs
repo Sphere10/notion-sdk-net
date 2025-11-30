@@ -14,7 +14,7 @@ public class CommentsClientTests : IntegrationTestBase, IAsyncLifetime
     {
         _page = await Client.Pages.CreateAsync(
             PagesCreateParametersBuilder.Create(
-                new ParentPageInput { PageId = ParentPageId }
+                new PageParentRequest { PageId = ParentPageId }
             ).Build()
         );
     }

@@ -16,7 +16,7 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
     {
         _page = await Client.Pages.CreateAsync(
             PagesCreateParametersBuilder.Create(
-                new ParentPageInput { PageId = ParentPageId }
+                new PageParentRequest { PageId = ParentPageId }
             ).Build()
         );
     }
@@ -83,6 +83,14 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
             });
 
         // Assert
+        response.DataSources.Should().ContainSingle();
+        await ValidateDatasourceProperties(response.DataSources.Single().DataSourceId, createdSourceDatabase.Id);
+    }
+
+    private async Task ValidateDatasourceProperties(string dataSourceId, string sourceDatabaseId)
+    {
+        var response = await Client.DataSources.RetrieveAsync(new RetrieveDataSourceRequest { DataSourceId = dataSourceId });
+
         response.Properties.Should().NotBeNull();
 
         response.Properties.Should().ContainKey("Single Relation");
@@ -90,20 +98,20 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
         singleRelation.Should().BeEquivalentTo(
             new SinglePropertyRelation
             {
-                DatabaseId = createdSourceDatabase.Id,
+                DatabaseId = sourceDatabaseId,
                 SingleProperty = new Dictionary<string, object>()
             });
 
         response.Properties.Should().ContainKey("Dual Relation");
         var dualRelation = response.Properties["Dual Relation"].As<RelationProperty>().Relation;
-        dualRelation.DatabaseId.Should().Be(createdSourceDatabase.Id);
+        dualRelation.DatabaseId.Should().Be(sourceDatabaseId);
         dualRelation.Type.Should().Be(RelationType.Dual);
         dualRelation.Should().BeOfType<DualPropertyRelation>();
     }
 
     private async Task<Database> CreateDatabaseWithAPageAsync(string databaseName)
     {
-        var createDbRequest = new DatabasesCreateParameters
+        var createDbRequest = new DatabasesCreateRequest
         {
             Title = new List<RichTextBaseInput>
             {
@@ -116,17 +124,20 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
                     }
                 }
             },
-            Properties = new Dictionary<string, IPropertySchema>
+            InitialDataSource = new InitialDataSourceRequest
             {
-                { "Name", new TitlePropertySchema { Title = new Dictionary<string, object>() } },
+                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                {
+                    { "Name", new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() } },
+                }
             },
-            Parent = new ParentPageInput { PageId = _page.Id }
+            Parent = new PageParentOfDatabaseRequest { PageId = _page.Id }
         };
 
         var createdDatabase = await Client.Databases.CreateAsync(createDbRequest);
 
         var pagesCreateParameters = PagesCreateParametersBuilder
-            .Create(new DatabaseParentInput { DatabaseId = createdDatabase.Id })
+            .Create(new DatabaseParentRequest { DatabaseId = createdDatabase.Id })
             .AddProperty("Name",
                 new TitlePropertyValue
                 {
@@ -146,7 +157,7 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
     public async Task Verify_mention_date_property_parsed_properly()
     {
         // Arrange
-        var createDbRequest = new DatabasesCreateParameters
+        var createDbRequest = new DatabasesCreateRequest
         {
             Title = new List<RichTextBaseInput>
             {
@@ -170,11 +181,14 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
                     }
                 }
             },
-            Properties = new Dictionary<string, IPropertySchema>
+            InitialDataSource = new InitialDataSourceRequest
             {
-                { "Name", new TitlePropertySchema { Title = new Dictionary<string, object>() } },
+                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                {
+                    { "Name", new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() } },
+                }
             },
-            Parent = new ParentPageInput { PageId = _page.Id }
+            Parent = new PageParentOfDatabaseRequest { PageId = _page.Id }
         };
 
         // Act
