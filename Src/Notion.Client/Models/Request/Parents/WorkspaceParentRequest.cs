@@ -3,13 +3,13 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class DatabaseParentRequest : IParentOfDataSourceRequest
+    public class WorkspaceParentRequest : IParentOfPageRequest
     {
         [JsonProperty("type")]
-        public string Type => "database_id";
+        public string Type => "workspace";
 
-        [JsonProperty("database_id")]
-        public string DatabaseId { get; set; }
+        [JsonProperty("workspace")]
+        public bool Workspace => true;
 
         /// <summary>
         /// Additional data for future compatibility

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Notion.Client
 {
     public class PagesCreateParameters : IPagesCreateBodyParameters, IPagesCreateQueryParameters
     {
-        public IPageParentInput Parent { get; set; }
+        public IParentOfPageRequest Parent { get; set; }
 
         public IDictionary<string, PropertyValue> Properties { get; set; }
 

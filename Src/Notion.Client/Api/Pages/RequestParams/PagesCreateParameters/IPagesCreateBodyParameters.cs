@@ -6,7 +6,7 @@ namespace Notion.Client
     public interface IPagesCreateBodyParameters
     {
         [JsonProperty("parent")]
-        IPageParentInput Parent { get; set; }
+        IParentOfPageRequest Parent { get; set; }
 
         [JsonProperty("properties")]
         IDictionary<string, PropertyValue> Properties { get; set; }

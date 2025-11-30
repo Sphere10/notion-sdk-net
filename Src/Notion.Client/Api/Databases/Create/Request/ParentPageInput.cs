@@ -2,7 +2,7 @@
 
 namespace Notion.Client
 {
-    public class ParentPageInput : IPageParentInput
+    public class ParentPageInput
     {
         [JsonProperty("page_id")]
         public string PageId { get; set; }

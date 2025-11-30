@@ -10,13 +10,13 @@ namespace Notion.Client
         private readonly Dictionary<string, PropertyValue> _properties = new();
         private FileObject _cover;
         private IPageIcon _icon;
-        private IPageParentInput _parent;
+        private IParentOfPageRequest _parent;
 
         private PagesCreateParametersBuilder()
         {
         }
 
-        public static PagesCreateParametersBuilder Create(IPageParentInput parent)
+        public static PagesCreateParametersBuilder Create(IParentOfPageRequest parent)
         {
             return new PagesCreateParametersBuilder { _parent = parent };
         }
