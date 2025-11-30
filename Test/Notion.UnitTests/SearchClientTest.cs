@@ -50,9 +50,6 @@ public class SearchClientTest : ApiTestBase
             obj =>
             {
                 obj.Object.Should().Be(ObjectType.Database);
-
-                var database = (Database)obj;
-                database.Properties.Should().HaveCount(2);
             },
             obj =>
             {

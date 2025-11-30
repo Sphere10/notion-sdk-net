@@ -57,7 +57,7 @@ public class PagesClientTests : ApiTestBase
             );
 
         var pagesCreateParameters = PagesCreateParametersBuilder
-            .Create(new DatabaseParentInput { DatabaseId = "3c357473-a281-49a4-88c0-10d2b245a589" })
+            .Create(new DatabaseParentRequest { DatabaseId = "3c357473-a281-49a4-88c0-10d2b245a589" })
             .AddProperty(
                 "Name",
                 new TitlePropertyValue
@@ -258,7 +258,7 @@ public class PagesClientTests : ApiTestBase
     {
         var pagesCreateParameters = new PagesCreateParameters
         {
-            Parent = new ParentPageInput { PageId = "3c357473-a281-49a4-88c0-10d2b245a589" },
+            Parent = new PageParentRequest { PageId = "3c357473-a281-49a4-88c0-10d2b245a589" },
             Properties = null
         };
 
