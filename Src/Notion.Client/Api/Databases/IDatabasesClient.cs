@@ -33,7 +33,7 @@ namespace Notion.Client
         /// <returns>
         ///     <see cref="Database" />
         /// </returns>
-        Task<Database> CreateAsync(DatabasesCreateParameters databasesCreateParameters, CancellationToken cancellationToken = default);
+        Task<Database> CreateAsync(DatabasesCreateRequest databasesCreateParameters, CancellationToken cancellationToken = default);
 
         /// <summary>
         ///     Updates an existing database as specified by the parameters.
