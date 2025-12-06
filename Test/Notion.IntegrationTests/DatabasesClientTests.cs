@@ -135,7 +135,6 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
         mention.Date.End.Should().NotBeNull();
     }
 
-    // add test for UpdateAsync method
     [Fact]
     public async Task UpdateDatabase()
     {
@@ -162,5 +161,20 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
 
         // Assert
         updatedDatabase.Title.OfType<RichTextText>().First().Text.Content.Should().Be("Updated DB Name");
+    }
+
+    [Fact]
+    public async Task RetrieveDatabase()
+    {
+        // Arrange
+        var createdDatabase = await CreateDatabaseWithAPageAsync("Retrieve Test DB");
+
+        // Act
+        var retrievedDatabase = await Client.Databases.RetrieveAsync(createdDatabase.Id);
+
+        // Assert
+        retrievedDatabase.Id.Should().Be(createdDatabase.Id);
+        retrievedDatabase.Title.OfType<RichTextText>().First().Text.Content.Should().Be("Retrieve Test DB");
+        retrievedDatabase.DataSources.Should().ContainSingle();
     }
 }
