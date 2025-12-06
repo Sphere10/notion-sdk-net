@@ -518,4 +518,28 @@ public class DatabasesClientTests : ApiTestBase
         var exception = await Assert.ThrowsAsync<ArgumentNullException>(Act);
         Assert.Equal("databaseId", exception.ParamName);
     }
+
+    [Fact]
+    public async Task RetrieveWikiParentDatabaseAsync()
+    {
+        var databaseId = "7g82e3a3-2c13-07e8-h7d9-d36cab1fd6f9";
+        var path = ApiEndpoints.DatabasesApiUrls.Retrieve(databaseId);
+        var jsonData = await File.ReadAllTextAsync("data/databases/WikiParentDatabaseRetrieveResponse.json");
+
+        Server.Given(CreateGetRequestBuilder(path))
+            .RespondWith(
+                Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(jsonData)
+            );
+
+        var database = await _client.RetrieveAsync(databaseId);
+
+        // Verify that when the parent is a database (such as a Wiki page), parent.type becomes database_id
+        database.Parent.Type.Should().Be(ParentType.DatabaseId);
+        database.Parent.Should().BeOfType<DatabaseParent>();
+        ((DatabaseParent)database.Parent).DatabaseId.Should().Be("6a82a3a3-9c10-802c-9c8a-de6564be71fm");
+        database.Title.Should().ContainSingle();
+        database.Title[0].PlainText.Should().Be("Database within Wiki page");
+    }
 }
