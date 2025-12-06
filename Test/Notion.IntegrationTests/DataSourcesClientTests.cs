@@ -29,11 +29,12 @@ namespace Notion.IntegrationTests
         public async Task CreateDataSource_ShouldReturnSuccess()
         {
             // Arrange
+            var database = await CreateDatabaseWithAPageAsync("Test Data Source DB");
             var request = new CreateDataSourceRequest
             {
                 Parent = new DatabaseParentRequest
                 {
-                    DatabaseId = "" // TODO: Create a test database and set its ID here
+                    DatabaseId = database.Id
                 },
                 Properties = new Dictionary<string, PropertyConfigurationRequest>
                 {
@@ -67,11 +68,12 @@ namespace Notion.IntegrationTests
         public async Task UpdateDataSource_ShouldReturnSuccess()
         {
             // Arrange
+            var database = await CreateDatabaseWithAPageAsync("Test Data Source DB");
             var createRequest = new CreateDataSourceRequest
             {
                 Parent = new DatabaseParentRequest
                 {
-                    DatabaseId = "29ee2842ccb5802397b8fdf6fed5ac93" // TODO: Create a test database and set its ID here
+                    DatabaseId = database.Id
                 },
                 Properties = new Dictionary<string, PropertyConfigurationRequest>
                 {
