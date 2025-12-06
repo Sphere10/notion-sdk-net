@@ -26,24 +26,6 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
         await Client.Pages.UpdateAsync(_page.Id, new PagesUpdateParameters { InTrash = true });
     }
 
-    [Fact]
-    public async Task QueryDatabase()
-    {
-        // Arrange
-        var createdDatabase = await CreateDatabaseWithAPageAsync("Test List");
-
-        // Act
-        var response = await Client.Databases.QueryAsync(createdDatabase.Id, new DatabasesQueryParameters());
-
-        // Assert
-        response.Results.Should().NotBeNull();
-        var page = response.Results.Should().ContainSingle().Subject.As<Page>();
-
-        page.Properties["Name"].As<TitlePropertyValue>()
-            .Title.Cast<RichTextText>().First()
-            .Text.Content.Should().Be("Test Title");
-    }
-
     private async Task<Database> CreateDatabaseWithAPageAsync(string databaseName)
     {
         var createDbRequest = new DatabasesCreateRequest

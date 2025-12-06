@@ -15,18 +15,6 @@ namespace Notion.Client
         Task<Database> RetrieveAsync(string databaseId, CancellationToken cancellationToken = default);
 
         /// <summary>
-        ///     Gets a list of Pages contained in the database, filtered and ordered according to the
-        ///     filter conditions and sort criteria provided in the request. The response may contain
-        ///     fewer than <c>page_size</c> of results.
-        /// </summary>
-        /// <param name="databaseId"></param>
-        /// <param name="databasesQueryParameters"></param>
-        /// <returns>
-        ///     <see cref="PaginatedList{T}" />
-        /// </returns>
-        Task<DatabaseQueryResponse> QueryAsync(string databaseId, DatabasesQueryParameters databasesQueryParameters, CancellationToken cancellationToken = default);
-
-        /// <summary>
         ///     Creates a database as a subpage in the specified parent page, with the specified properties schema.
         /// </summary>
         /// <param name="databasesCreateParameters"></param>
