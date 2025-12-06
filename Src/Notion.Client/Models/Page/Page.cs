@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class Page : IObject, IObjectModificationData, IQueryDataSourceResponseObject
+    public class Page : IObject, IObjectModificationData, IQueryDataSourceResponseObject, ISearchResponseObject
     {
         /// <summary>
         ///     The parent of this page. Can be a database, page, or workspace.

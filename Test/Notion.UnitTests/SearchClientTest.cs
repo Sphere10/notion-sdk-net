@@ -49,7 +49,7 @@ public class SearchClientTest : ApiTestBase
         results.Should().SatisfyRespectively(
             obj =>
             {
-                obj.Object.Should().Be(ObjectType.Database);
+                obj.Object.Should().Be(ObjectType.DataSource);
             },
             obj =>
             {

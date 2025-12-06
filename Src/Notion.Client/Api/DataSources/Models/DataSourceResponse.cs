@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class DataSourceResponse : IObject, IObjectModificationData, IQueryDataSourceResponseObject
+    public class DataSourceResponse : IObject, IObjectModificationData, IQueryDataSourceResponseObject, ISearchResponseObject
     {
         public string Id { get; set; }
 
