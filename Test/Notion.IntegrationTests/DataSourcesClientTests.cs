@@ -1,13 +1,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Notion.Client;
 using Xunit;
 
 namespace Notion.IntegrationTests
 {
-    public class DataSourcesClientTests : IntegrationTestBase
+    public class DataSourcesClientTests : IntegrationTestBase, IAsyncLifetime
     {
+        private Page _page = null!;
+
+        public async Task InitializeAsync()
+        {
+            _page = await Client.Pages.CreateAsync(
+                PagesCreateParametersBuilder.Create(
+                    new PageParentRequest { PageId = ParentPageId }
+                ).Build()
+            );
+        }
+
+        public async Task DisposeAsync()
+        {
+            await Client.Pages.UpdateAsync(_page.Id, new PagesUpdateParameters { InTrash = true });
+        }
+
         [Fact]
         public async Task CreateDataSource_ShouldReturnSuccess()
         {
@@ -176,6 +193,120 @@ namespace Notion.IntegrationTests
 
             var response = await Client.DataSources.CreateAsync(request);
             return response.Id;
+        }
+
+        [Fact]
+        public async Task UpdateDatabaseRelationProperties()
+        {
+            // Arrange
+            var createdSourceDatabase = await CreateDatabaseWithAPageAsync("Test Relation Source");
+            var createdDestinationDatabase = await CreateDatabaseWithAPageAsync("Test Relation Destination");
+
+            // Act
+            var response = await Client.DataSources.UpdateAsync(
+                new UpdateDataSourceRequest
+                {
+                    DataSourceId = createdDestinationDatabase.DataSources.First().DataSourceId,
+                    Properties = new Dictionary<string, IUpdatePropertyConfigurationRequest>
+                    {
+                        {
+                            "Single Relation",
+                            new UpdatePropertyConfigurationRequest<RelationPropertyConfigurationRequest>
+                            {
+                                Name = "Single Relation",
+                                PropertyRequest = new RelationPropertyConfigurationRequest
+                                {
+                                    Relation = new SinglePropertyRelationDataRequest
+                                    {
+                                        DataSourceId = createdSourceDatabase.DataSources.First().DataSourceId,
+                                        SingleProperty = new Dictionary<string, object>()
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "Dual Relation",
+                            new UpdatePropertyConfigurationRequest<RelationPropertyConfigurationRequest>
+                            {
+                                Name = "Dual Relation",
+                                PropertyRequest = new RelationPropertyConfigurationRequest
+                                {
+                                    Relation = new DualPropertyRelationDataRequest
+                                    {
+                                        DataSourceId = createdSourceDatabase.DataSources.First().DataSourceId,
+                                        DualProperty = new DualPropertyRelationDataRequest.Data()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+            // Assert
+            await ValidateDatasourceProperties(createdDestinationDatabase.DataSources.First().DataSourceId, createdSourceDatabase.DataSources.First().DataSourceId);
+        }
+
+        private async Task ValidateDatasourceProperties(string dataSourceId, string sourceDataSourceId)
+        {
+            var response = await Client.DataSources.RetrieveAsync(new RetrieveDataSourceRequest { DataSourceId = dataSourceId });
+
+            response.Properties.Should().NotBeNull();
+
+            response.Properties.Should().ContainKey("Single Relation");
+            var singleRelation = response.Properties["Single Relation"].As<RelationDataSourcePropertyConfigResponse>().Relation;
+            singleRelation.Type.Should().Be("single_property");
+            var singleRelationData = singleRelation.Should().BeOfType<SinglePropertyRelationResponse>().Subject;
+            singleRelationData.DataSourceId.Should().Be(sourceDataSourceId);
+
+            response.Properties.Should().ContainKey("Dual Relation");
+            var dualRelation = response.Properties["Dual Relation"].As<RelationDataSourcePropertyConfigResponse>().Relation;
+            dualRelation.DataSourceId.Should().Be(sourceDataSourceId);
+            dualRelation.Type.Should().Be("dual_property");
+            dualRelation.Should().BeOfType<DualPropertyRelationResponse>();
+        }
+
+        private async Task<Database> CreateDatabaseWithAPageAsync(string databaseName)
+        {
+            var createDbRequest = new DatabasesCreateRequest
+            {
+                Title = new List<RichTextBaseInput>
+                {
+                    new RichTextTextInput
+                    {
+                        Text = new Text
+                        {
+                            Content = databaseName,
+                            Link = null
+                        }
+                    }
+                },
+                InitialDataSource = new InitialDataSourceRequest
+                {
+                    Properties = new Dictionary<string, PropertyConfigurationRequest>
+                    {
+                        { "Name", new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() } },
+                    }
+                },
+                Parent = new PageParentOfDatabaseRequest { PageId = _page.Id }
+            };
+
+            var createdDatabase = await Client.Databases.CreateAsync(createDbRequest);
+
+            var pagesCreateParameters = PagesCreateParametersBuilder
+                .Create(new DatabaseParentRequest { DatabaseId = createdDatabase.Id })
+                .AddProperty("Name",
+                    new TitlePropertyValue
+                    {
+                        Title = new List<RichTextBase>
+                        {
+                            new RichTextText { Text = new Text { Content = "Test Title" } }
+                        }
+                    })
+                .Build();
+
+            await Client.Pages.CreateAsync(pagesCreateParameters);
+
+            return createdDatabase;
         }
     }
 }

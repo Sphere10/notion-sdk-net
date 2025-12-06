@@ -23,12 +23,5 @@ namespace Notion.Client
 
             return await _client.GetAsync<Database>(DatabasesApiUrls.Retrieve(databaseId), cancellationToken: cancellationToken);
         }
-
-        public async Task<Database> UpdateAsync(string databaseId, DatabasesUpdateParameters databasesUpdateParameters, CancellationToken cancellationToken = default)
-        {
-            var body = (IDatabasesUpdateBodyParameters)databasesUpdateParameters;
-
-            return await _client.PatchAsync<Database>(DatabasesApiUrls.Update(databaseId), body, cancellationToken: cancellationToken);
-        }
     }
 }

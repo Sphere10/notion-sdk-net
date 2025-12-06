@@ -44,71 +44,6 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
             .Text.Content.Should().Be("Test Title");
     }
 
-    [Fact]
-    public async Task UpdateDatabaseRelationProperties()
-    {
-        // Arrange
-        var createdSourceDatabase = await CreateDatabaseWithAPageAsync("Test Relation Source");
-        var createdDestinationDatabase = await CreateDatabaseWithAPageAsync("Test Relation Destination");
-
-        // Act
-        var response = await Client.Databases.UpdateAsync(createdDestinationDatabase.Id,
-            new DatabasesUpdateParameters
-            {
-                Properties = new Dictionary<string, IUpdatePropertySchema>
-                {
-                    {
-                        "Single Relation",
-                        new RelationUpdatePropertySchema
-                        {
-                            Relation = new SinglePropertyRelation
-                            {
-                                DatabaseId = createdSourceDatabase.Id,
-                                SingleProperty = new Dictionary<string, object>()
-                            }
-                        }
-                    },
-                    {
-                        "Dual Relation",
-                        new RelationUpdatePropertySchema
-                        {
-                            Relation = new DualPropertyRelation
-                            {
-                                DatabaseId = createdSourceDatabase.Id,
-                                DualProperty = new DualPropertyRelation.Data()
-                            }
-                        }
-                    }
-                }
-            });
-
-        // Assert
-        response.DataSources.Should().ContainSingle();
-        await ValidateDatasourceProperties(response.DataSources.Single().DataSourceId, createdSourceDatabase.Id);
-    }
-
-    private async Task ValidateDatasourceProperties(string dataSourceId, string sourceDatabaseId)
-    {
-        var response = await Client.DataSources.RetrieveAsync(new RetrieveDataSourceRequest { DataSourceId = dataSourceId });
-
-        response.Properties.Should().NotBeNull();
-
-        response.Properties.Should().ContainKey("Single Relation");
-        var singleRelation = response.Properties["Single Relation"].As<RelationProperty>().Relation;
-        singleRelation.Should().BeEquivalentTo(
-            new SinglePropertyRelation
-            {
-                DatabaseId = sourceDatabaseId,
-                SingleProperty = new Dictionary<string, object>()
-            });
-
-        response.Properties.Should().ContainKey("Dual Relation");
-        var dualRelation = response.Properties["Dual Relation"].As<RelationProperty>().Relation;
-        dualRelation.DatabaseId.Should().Be(sourceDatabaseId);
-        dualRelation.Type.Should().Be(RelationType.Dual);
-        dualRelation.Should().BeOfType<DualPropertyRelation>();
-    }
-
     private async Task<Database> CreateDatabaseWithAPageAsync(string databaseName)
     {
         var createDbRequest = new DatabasesCreateRequest
@@ -198,5 +133,34 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
         var mention = createdDatabase.Title.OfType<RichTextMention>().First().Mention;
         mention.Date.Start.Should().NotBeNull();
         mention.Date.End.Should().NotBeNull();
+    }
+
+    // add test for UpdateAsync method
+    [Fact]
+    public async Task UpdateDatabase()
+    {
+        // Arrange
+        var createdDatabase = await CreateDatabaseWithAPageAsync("Initial DB Name");
+        var updateRequest = new DatabasesUpdateRequest
+        {
+            DatabaseId = createdDatabase.Id,
+            Title = new List<RichTextBaseInput>
+            {
+                new RichTextTextInput
+                {
+                    Text = new Text
+                    {
+                        Content = "Updated DB Name",
+                        Link = null
+                    }
+                }
+            }
+        };
+
+        // Act
+        var updatedDatabase = await Client.Databases.UpdateAsync(updateRequest);
+
+        // Assert
+        updatedDatabase.Title.OfType<RichTextText>().First().Text.Content.Should().Be("Updated DB Name");
     }
 }

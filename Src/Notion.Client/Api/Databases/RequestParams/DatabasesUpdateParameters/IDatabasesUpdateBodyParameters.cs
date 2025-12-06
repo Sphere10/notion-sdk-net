@@ -5,8 +5,8 @@ namespace Notion.Client
 {
     public interface IDatabasesUpdateBodyParameters
     {
-        [JsonProperty("properties")]
-        Dictionary<string, IUpdatePropertySchema> Properties { get; set; }
+        [JsonProperty("parent")]
+        IParentOfDatabaseRequest Parent { get; set; }
 
         [JsonProperty("title")]
         List<RichTextBaseInput> Title { get; set; }
@@ -18,12 +18,15 @@ namespace Notion.Client
         FileObject Cover { get; set; }
 
         [JsonProperty("in_trash")]
-        bool InTrash { get; set; }
+        bool? InTrash { get; set; }
 
         [JsonProperty("is_inline")]
         bool? IsInline { get; set; }
 
         [JsonProperty("description")]
         List<RichTextBaseInput> Description { get; set; }
+
+        [JsonProperty("is_locked")]
+        bool? IsLocked { get; set; }
     }
 }

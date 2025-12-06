@@ -13,6 +13,9 @@ namespace Notion.Client
         [JsonProperty("database_id")]
         public string DatabaseId { get; set; }
 
+        [JsonProperty("data_source_id")]
+        public string DataSourceId { get; set; }
+
         [JsonProperty("type")]
         [JsonConverter(typeof(StringEnumConverter))]
         public virtual string Type { get; set; }

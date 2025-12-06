@@ -38,11 +38,10 @@ namespace Notion.Client
         /// <summary>
         ///     Updates an existing database as specified by the parameters.
         /// </summary>
-        /// <param name="databaseId"></param>
-        /// <param name="databasesUpdateParameters"></param>
+        /// <param name="databasesUpdateRequest"></param>
         /// <returns>
         ///     <see cref="Database" />
         /// </returns>
-        Task<Database> UpdateAsync(string databaseId, DatabasesUpdateParameters databasesUpdateParameters, CancellationToken cancellationToken = default);
+        Task<Database> UpdateAsync(DatabasesUpdateRequest databasesUpdateRequest, CancellationToken cancellationToken = default);
     }
 }
