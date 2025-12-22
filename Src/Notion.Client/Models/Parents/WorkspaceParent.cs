@@ -1,6 +1,6 @@
 ﻿namespace Notion.Client
 {
-    public class WorkspaceParent : IPageParent, IDatabaseParent, IParentOfBlock
+    public class WorkspaceParent : IParentOfPage, IDatabaseParent, IParentOfBlock
     {
         /// <summary>
         ///     Always "workspace".

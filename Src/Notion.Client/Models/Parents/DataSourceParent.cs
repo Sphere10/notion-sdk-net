@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class DataSourceParent : IPageParent
+    public class DataSourceParent : IParentOfPage
     {
         public string Type { get; set; }
 

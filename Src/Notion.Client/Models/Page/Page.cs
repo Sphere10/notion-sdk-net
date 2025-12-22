@@ -10,7 +10,7 @@ namespace Notion.Client
         ///     The parent of this page. Can be a database, page, or workspace.
         /// </summary>
         [JsonProperty("parent")]
-        public IPageParent Parent { get; set; }
+        public IParentOfPage Parent { get; set; }
 
         /// <summary>
         ///     Indicates whether the page is currently in the trash.

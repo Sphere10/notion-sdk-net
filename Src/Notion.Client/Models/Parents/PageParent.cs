@@ -2,7 +2,7 @@
 
 namespace Notion.Client
 {
-    public class PageParent : IPageParent, IDatabaseParent, IParentOfBlock, ICommentParent
+    public class PageParent : IParentOfPage, IDatabaseParent, IParentOfBlock, ICommentParent
     {
         /// <summary>
         ///     The ID of the page that this page belongs to.
