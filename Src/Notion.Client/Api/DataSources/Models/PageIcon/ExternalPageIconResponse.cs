@@ -5,9 +5,9 @@ namespace Notion.Client
 {
     public class ExternalPageIconResponse : IPageIconResponse
     {
-        public string Type { get; set; } = "external";
+        public string Type { get; set; } = PageIconTypes.External;
 
-        [JsonProperty("external")]
+        [JsonProperty(PageIconTypes.External)]
         public ExternalFileResponse External { get; set; }
 
         [JsonExtensionData]

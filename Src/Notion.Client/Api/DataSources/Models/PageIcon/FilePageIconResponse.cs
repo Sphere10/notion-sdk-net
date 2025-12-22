@@ -5,9 +5,9 @@ namespace Notion.Client
 {
     public class FilePageIconResponse : IPageIconResponse
     {
-        public string Type { get; set; } = "file";
+        public string Type { get; set; } = PageIconTypes.File;
 
-        [JsonProperty("file")]
+        [JsonProperty(PageIconTypes.File)]
         public InternalFileResponse File { get; set; }
 
         [JsonExtensionData]

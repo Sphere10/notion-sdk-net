@@ -5,9 +5,9 @@ namespace Notion.Client
 {
     public class CustomEmojiPageIconResponse : IPageIconResponse
     {
-        public string Type { get; set; } = "custom_emoji";
+        public string Type { get; set; } = PageIconTypes.CustomEmoji;
 
-        [JsonProperty("custom_emoji")]
+        [JsonProperty(PageIconTypes.CustomEmoji)]
         public CustomEmojiResponse CustomEmoji { get; set; }
 
         [JsonExtensionData]
