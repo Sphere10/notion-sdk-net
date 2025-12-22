@@ -4,10 +4,11 @@ using Newtonsoft.Json;
 namespace Notion.Client
 {
     [JsonConverter(typeof(JsonSubtypes), "type")]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(DatabaseParent), ParentTypes.Database)]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(PageParent), ParentTypes.Page)]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(WorkspaceParent), ParentTypes.Workspace)]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(BlockParent), ParentTypes.Block)]
+    [JsonSubtypes.KnownSubType(typeof(DatabaseParent), ParentTypes.Database)]
+    [JsonSubtypes.KnownSubType(typeof(DataSourceParent), ParentTypes.Datasource)]
+    [JsonSubtypes.KnownSubType(typeof(PageParent), ParentTypes.Page)]
+    [JsonSubtypes.KnownSubType(typeof(BlockParent), ParentTypes.Block)]
+    [JsonSubtypes.KnownSubType(typeof(WorkspaceParent), ParentTypes.Workspace)]
     public interface IParentOfBlock : IParent
     {
     }

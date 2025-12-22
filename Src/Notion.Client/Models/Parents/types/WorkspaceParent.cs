@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class WorkspaceParentResponse : IParentOfDatabaseResponse
+    public class WorkspaceParent : IParentOfDatabaseResponse, IParentOfBlock, IParentOfPage
     {
-        public string Type { get; set; } = "workspace";
+        public string Type { get; set; } = ParentTypes.Workspace;
 
-        [JsonProperty("workspace")]
+        [JsonProperty(ParentTypes.Workspace)]
         public bool Workspace { get; set; } = true;
 
         [JsonExtensionData]

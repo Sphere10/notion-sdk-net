@@ -7,7 +7,7 @@ namespace Notion.Client
     public class Comment : IObject
     {
         [JsonProperty("parent")]
-        public ICommentParent Parent { get; set; }
+        public IParentOfComment Parent { get; set; }
 
         [JsonProperty("discussion_id")]
         public string DiscussionId { get; set; }

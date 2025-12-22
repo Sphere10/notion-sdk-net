@@ -6,7 +6,7 @@ namespace Notion.Client
     [JsonConverter(typeof(JsonSubtypes), "type")]
     [JsonSubtypes.KnownSubTypeAttribute(typeof(PageParent), ParentTypes.Page)]
     [JsonSubtypes.KnownSubTypeAttribute(typeof(BlockParent), ParentTypes.Block)]
-    public interface ICommentParent
+    public interface IParentOfComment
     {
     }
 }

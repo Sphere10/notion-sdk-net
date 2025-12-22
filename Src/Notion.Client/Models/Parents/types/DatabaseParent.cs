@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class DatabaseParentResponse : IParentOfDataSourceResponse, IParentOfDatabaseResponse
+    public class DatabaseParent : IParentOfDataSourceResponse, IParentOfDatabaseResponse, IParentOfBlock, IParentOfPage
     {
-        public string Type { get; set; } = "database_id";
+        public string Type { get; set; } = ParentTypes.Database;
 
-        [JsonProperty("database_id")]
+        [JsonProperty(ParentTypes.Database)]
         public string DatabaseId { get; set; }
 
         [JsonExtensionData]

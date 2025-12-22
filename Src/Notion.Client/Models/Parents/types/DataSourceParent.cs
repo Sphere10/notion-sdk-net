@@ -3,14 +3,14 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class DataSourceParentResponse : IParentOfDataSourceResponse
+    public class DataSourceParent : IParentOfDataSourceResponse, IParentOfBlock, IParentOfPage
     {
-        public string Type { get; set; } = "data_source_id";
+        public string Type { get; set; } = ParentTypes.Datasource;
 
-        [JsonProperty("data_source_id")]
+        [JsonProperty(ParentTypes.Datasource)]
         public string DataSourceId { get; set; }
 
-        [JsonProperty("database_id")]
+        [JsonProperty(ParentTypes.Database)]
         public string DatabaseId { get; set; }
 
         [JsonExtensionData]
