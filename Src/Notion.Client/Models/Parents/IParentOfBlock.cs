@@ -9,7 +9,9 @@ namespace Notion.Client
     [JsonSubtypes.KnownSubType(typeof(PageParent), ParentTypes.Page)]
     [JsonSubtypes.KnownSubType(typeof(BlockParent), ParentTypes.Block)]
     [JsonSubtypes.KnownSubType(typeof(WorkspaceParent), ParentTypes.Workspace)]
-    public interface IParentOfBlock : IParent
+    public interface IParentOfBlock
     {
+        [JsonProperty("type")]
+        string Type { get; set; }
     }
 }

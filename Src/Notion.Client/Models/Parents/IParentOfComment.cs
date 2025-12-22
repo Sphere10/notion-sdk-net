@@ -8,5 +8,7 @@ namespace Notion.Client
     [JsonSubtypes.KnownSubTypeAttribute(typeof(BlockParent), ParentTypes.Block)]
     public interface IParentOfComment
     {
+        [JsonProperty("type")]
+        string Type { get; set; }
     }
 }
