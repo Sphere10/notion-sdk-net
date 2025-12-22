@@ -3,12 +3,12 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class FilePageIconResponse : IPageIconResponse
+    public class FilePageIcon : IPageIcon
     {
         public string Type { get; set; } = PageIconTypes.File;
 
         [JsonProperty(PageIconTypes.File)]
-        public InternalFileResponse File { get; set; }
+        public InternalFileInfo File { get; set; }
 
         [JsonExtensionData]
         public IDictionary<string, object> AdditionalData { get; set; }

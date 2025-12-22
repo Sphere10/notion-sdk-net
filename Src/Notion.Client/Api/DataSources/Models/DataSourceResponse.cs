@@ -71,7 +71,7 @@ namespace Notion.Client
         /// The icon of the data source.
         /// </summary>
         [JsonProperty("icon")]
-        public IPageIconResponse Icon { get; set; }
+        public IPageIcon Icon { get; set; }
 
         /// <summary>
         /// The cover image of the data source.

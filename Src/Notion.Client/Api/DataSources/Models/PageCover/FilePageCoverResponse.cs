@@ -8,7 +8,7 @@ namespace Notion.Client
         public string Type { get; set; } = "file";
 
         [JsonProperty("file")]
-        public InternalFileResponse File { get; set; }
+        public InternalFileInfo File { get; set; }
 
         [JsonExtensionData]
         public IDictionary<string, object> AdditionalData { get; set; }

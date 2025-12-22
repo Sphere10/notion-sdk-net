@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class EmojiPageIconResponse : IPageIconResponse
+    public class EmojiPageIcon : IPageIcon
     {
         public string Type { get; set; } = PageIconTypes.Emoji;
 

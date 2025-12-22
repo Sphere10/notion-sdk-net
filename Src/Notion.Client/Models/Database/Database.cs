@@ -54,7 +54,7 @@ namespace Notion.Client
         public IEnumerable<DataSourceReferenceResponse> DataSources { get; set; }
 
         [JsonProperty("icon")]
-        public IPageIconResponse Icon { get; set; }
+        public IPageIcon Icon { get; set; }
 
         [JsonProperty("cover")]
         public FileObject Cover { get; set; }
