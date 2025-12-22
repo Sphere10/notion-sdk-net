@@ -13,6 +13,6 @@ namespace Notion.Client
         /// <summary>
         ///     Always has a value "block_id"
         /// </summary>
-        public ParentType Type { get; set; }
+        public string Type { get; set; }
     }
 }

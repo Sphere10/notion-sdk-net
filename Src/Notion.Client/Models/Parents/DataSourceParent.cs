@@ -4,7 +4,7 @@ namespace Notion.Client
 {
     public class DataSourceParent : IPageParent
     {
-        public ParentType Type { get; set; }
+        public string Type { get; set; }
 
         [JsonProperty("data_source_id")]
         public string DataSourceId { get; set; }

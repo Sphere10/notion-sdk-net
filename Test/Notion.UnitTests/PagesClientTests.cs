@@ -37,7 +37,7 @@ public class PagesClientTests : ApiTestBase
 
         page.Url.Should().Be("https://www.notion.so/Avocado-251d2b5f268c4de2afe9c71ff92ca95c");
         page.Id.Should().Be(pageId);
-        page.Parent.Type.Should().Be(ParentType.DatabaseId);
+        page.Parent.Type.Should().Be(ParentTypes.Database);
         ((DatabaseParent)page.Parent).DatabaseId.Should().Be("48f8fee9-cd79-4180-bc2f-ec0398253067");
         page.InTrash.Should().BeFalse();
     }

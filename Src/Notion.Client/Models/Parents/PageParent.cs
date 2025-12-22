@@ -13,6 +13,6 @@ namespace Notion.Client
         /// <summary>
         ///     Always "page_id".
         /// </summary>
-        public ParentType Type { get; set; }
+        public string Type { get; set; }
     }
 }
