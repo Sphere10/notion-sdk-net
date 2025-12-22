@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class BlockParent : IParentOfDatabaseResponse, IParentOfBlock, IParentOfPage, IParentOfComment
+    public class BlockParent : IParentOfDatabase, IParentOfBlock, IParentOfPage, IParentOfComment
     {
         public string Type { get; set; } = ParentTypes.Block;
 

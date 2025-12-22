@@ -88,7 +88,7 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
 
         page.Should().NotBeNull();
 
-        page.Parent.Should().BeOfType<DataSourceParent>().Which
+        page.Parent.Should().BeOfType<DatasourceParent>().Which
             .DataSourceId.Should().Be(_database.DataSources.First().DataSourceId);
 
         page.Properties.Should().ContainKey("Name");
@@ -129,7 +129,7 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
         // Asserts
         page.Should().NotBeNull();
 
-        page.Parent.Should().BeOfType<DataSourceParent>().Which
+        page.Parent.Should().BeOfType<DatasourceParent>().Which
             .DataSourceId.Should().Be(_database.DataSources.First().DataSourceId);
 
         page.Properties.Should().ContainKey("Name");
@@ -298,7 +298,7 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
 
         // Assert
         Assert.NotNull(page);
-        var pageParent = Assert.IsType<DataSourceParent>(page.Parent);
+        var pageParent = Assert.IsType<DatasourceParent>(page.Parent);
         Assert.Equal(_database.DataSources.First().DataSourceId, pageParent.DataSourceId);
 
         var titleProperty = (ListPropertyItem)await Client.Pages.RetrievePagePropertyItemAsync(
@@ -436,7 +436,7 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
 
         page.Should().NotBeNull();
 
-        page.Parent.Should().BeOfType<DataSourceParent>().Which
+        page.Parent.Should().BeOfType<DatasourceParent>().Which
             .DataSourceId.Should().Be(_database.DataSources.First().DataSourceId);
 
         page.Properties.Should().ContainKey("Name");

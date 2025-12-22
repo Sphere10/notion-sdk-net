@@ -5,10 +5,8 @@ namespace Notion.Client
 {
     [JsonConverter(typeof(JsonSubtypes), "type")]
     [JsonSubtypes.KnownSubTypeAttribute(typeof(DatabaseParent), "database_id")]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(PageParent), "page_id")]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(WorkspaceParent), "workspace")]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(BlockParent), "block_id")]
-    public interface IParentOfDatabaseResponse
+    [JsonSubtypes.KnownSubTypeAttribute(typeof(DatasourceParent), "data_source_id")]
+    public interface IParentOfDatasource
     {
         [JsonProperty("type")]
         string Type { get; set; }

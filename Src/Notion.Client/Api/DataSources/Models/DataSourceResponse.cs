@@ -26,14 +26,14 @@ namespace Notion.Client
         /// The parent of the data source.
         /// </summary>
         [JsonProperty("parent")]
-        public IParentOfDataSourceResponse Parent { get; set; }
+        public IParentOfDatasource Parent { get; set; }
 
         /// <summary>
         /// The parent of the data source's containing database. This is typically a page, block,
         /// or workspace, but can be another database in the case of wikis.
         /// </summary>
         [JsonProperty("database_parent")]
-        public IParentOfDatabaseResponse DatabaseParent { get; set; }
+        public IParentOfDatabase DatabaseParent { get; set; }
 
         /// <summary>
         /// Indicates whether the data source is inline within its parent database.

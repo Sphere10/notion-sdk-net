@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class DataSourceParent : IParentOfDataSourceResponse, IParentOfBlock, IParentOfPage
+    public class DatasourceParent : IParentOfDatasource, IParentOfBlock, IParentOfPage
     {
         public string Type { get; set; } = ParentTypes.Datasource;
 
