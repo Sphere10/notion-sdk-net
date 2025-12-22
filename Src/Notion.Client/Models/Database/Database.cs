@@ -26,7 +26,7 @@ namespace Notion.Client
         /// Parent of the database.
         /// </summary>
         [JsonProperty("parent")]
-        public IDatabaseParent Parent { get; set; }
+        public IParentOfDatabase Parent { get; set; }
 
         [JsonProperty("is_inline")]
         public bool IsInline { get; set; }
