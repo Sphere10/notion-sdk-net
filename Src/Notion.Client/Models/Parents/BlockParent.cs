@@ -2,7 +2,7 @@
 
 namespace Notion.Client
 {
-    public class BlockParent : IPageParent, IDatabaseParent, IBlockParent, ICommentParent
+    public class BlockParent : IPageParent, IDatabaseParent, IParentOfBlock, ICommentParent
     {
         /// <summary>
         ///     The ID of the block that the element belongs to.

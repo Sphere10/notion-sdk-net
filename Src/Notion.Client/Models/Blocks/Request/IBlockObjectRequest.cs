@@ -14,6 +14,6 @@ namespace Notion.Client
         bool HasChildren { get; set; }
 
         [JsonProperty("parent")]
-        IBlockParent Parent { get; set; }
+        IParentOfBlock Parent { get; set; }
     }
 }

@@ -35,7 +35,7 @@ public class IBlocksClientTests : IntegrationTestBase, IAsyncLifetime
                 BlockId = _page.Id,
                 Children = new List<IBlockObjectRequest>
                 {
-                    new BreadcrumbBlockRequest { Breadcrumb = new BreadcrumbBlockRequest.Data() },
+                    new BreadcrumbBlockRequest { Parent= new PageParent() {PageId = Guid.NewGuid().ToString()}, Breadcrumb = new BreadcrumbBlockRequest.Data() },
                     new DividerBlockRequest { Divider = new DividerBlockRequest.Data() },
                     new TableOfContentsBlockRequest { TableOfContents = new TableOfContentsBlockRequest.Data() },
                     new CalloutBlockRequest
