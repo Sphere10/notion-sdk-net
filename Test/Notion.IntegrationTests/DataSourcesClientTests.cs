@@ -36,11 +36,11 @@ namespace Notion.IntegrationTests
                 {
                     DatabaseId = database.Id
                 },
-                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                Properties = new Dictionary<string, DataSourcePropertyConfigRequest>
                 {
                     {
                         "Name",
-                        new TitlePropertyConfigurationRequest {
+                        new TitleDataSourcePropertyConfigRequest {
                             Description = "The name of the data source",
                             Title = new Dictionary<string, object>()
                         }
@@ -75,20 +75,20 @@ namespace Notion.IntegrationTests
                 {
                     DatabaseId = database.Id
                 },
-                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                Properties = new Dictionary<string, DataSourcePropertyConfigRequest>
                 {
                     {
                         "Name",
-                        new TitlePropertyConfigurationRequest {
+                        new TitleDataSourcePropertyConfigRequest {
                             Description = "The name of the data source",
                             Title = new Dictionary<string, object>()
                         }
                     },
                     {
                         "Status",
-                        new SelectPropertyConfigurationRequest {
+                        new SelectDataSourcePropertyConfigRequest {
                             Description = "The status of the data source",
-                            Select = new SelectPropertyConfigurationRequest.SelectOptions
+                            Select = new SelectDataSourcePropertyConfigRequest.SelectOptions
                             {
                                 Options = new List<SelectOptionRequest>
                                 {
@@ -118,13 +118,13 @@ namespace Notion.IntegrationTests
                 {
                     {
                         "Status",
-                        new UpdatePropertyConfigurationRequest<SelectPropertyConfigurationRequest>
+                        new UpdatePropertyConfigurationRequest<SelectDataSourcePropertyConfigRequest>
                         {
                             Name = "Item Status",
-                            PropertyRequest = new SelectPropertyConfigurationRequest
+                            PropertyRequest = new SelectDataSourcePropertyConfigRequest
                             {
                                 Description = "Updated status of the data source",
-                                Select = new SelectPropertyConfigurationRequest.SelectOptions
+                                Select = new SelectDataSourcePropertyConfigRequest.SelectOptions
                                 {
                                     Options = new List<SelectOptionRequest>
                                     {
@@ -177,11 +177,11 @@ namespace Notion.IntegrationTests
                 {
                     DatabaseId = databaseId
                 },
-                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                Properties = new Dictionary<string, DataSourcePropertyConfigRequest>
                 {
                     {
                         "Name",
-                        new TitlePropertyConfigurationRequest {
+                        new TitleDataSourcePropertyConfigRequest {
                             Description = "The name of the data source",
                             Title = new Dictionary<string, object>()
                         }
@@ -213,12 +213,12 @@ namespace Notion.IntegrationTests
                     {
                         {
                             "Single Relation",
-                            new UpdatePropertyConfigurationRequest<RelationPropertyConfigurationRequest>
+                            new UpdatePropertyConfigurationRequest<RelationDataSourcePropertyConfigRequest>
                             {
                                 Name = "Single Relation",
-                                PropertyRequest = new RelationPropertyConfigurationRequest
+                                PropertyRequest = new RelationDataSourcePropertyConfigRequest
                                 {
-                                    Relation = new SinglePropertyRelationDataRequest
+                                    Relation = new SinglePropertyRelationInfoRequest
                                     {
                                         DataSourceId = createdSourceDatabase.DataSources.First().DataSourceId,
                                         SingleProperty = new Dictionary<string, object>()
@@ -228,15 +228,15 @@ namespace Notion.IntegrationTests
                         },
                         {
                             "Dual Relation",
-                            new UpdatePropertyConfigurationRequest<RelationPropertyConfigurationRequest>
+                            new UpdatePropertyConfigurationRequest<RelationDataSourcePropertyConfigRequest>
                             {
                                 Name = "Dual Relation",
-                                PropertyRequest = new RelationPropertyConfigurationRequest
+                                PropertyRequest = new RelationDataSourcePropertyConfigRequest
                                 {
-                                    Relation = new DualPropertyRelationDataRequest
+                                    Relation = new DualPropertyRelationInfoRequest
                                     {
                                         DataSourceId = createdSourceDatabase.DataSources.First().DataSourceId,
-                                        DualProperty = new DualPropertyRelationDataRequest.Data()
+                                        DualProperty = new DualPropertyRelationInfoRequest.Data()
                                     }
                                 }
                             }
@@ -284,9 +284,9 @@ namespace Notion.IntegrationTests
                 },
                 InitialDataSource = new InitialDataSourceRequest
                 {
-                    Properties = new Dictionary<string, PropertyConfigurationRequest>
+                    Properties = new Dictionary<string, DataSourcePropertyConfigRequest>
                     {
-                        { "Name", new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() } },
+                        { "Name", new TitleDataSourcePropertyConfigRequest { Title = new Dictionary<string, object>() } },
                     }
                 },
                 Parent = new PageParentOfDatabaseRequest { PageId = _page.Id }

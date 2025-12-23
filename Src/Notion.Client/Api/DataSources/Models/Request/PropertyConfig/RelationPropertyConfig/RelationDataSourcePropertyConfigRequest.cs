@@ -2,12 +2,12 @@
 
 namespace Notion.Client
 {
-    public class RelationPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class RelationDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
         public override string Type => "relation";
 
         [JsonProperty("relation")]
-        public IRelationDataRequest Relation { get; set; }
+        public IRelationInfoRequest Relation { get; set; }
     }
 }

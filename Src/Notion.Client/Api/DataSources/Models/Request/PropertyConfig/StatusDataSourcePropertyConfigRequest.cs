@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class StatusPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class StatusDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
         public override string Type => "status";

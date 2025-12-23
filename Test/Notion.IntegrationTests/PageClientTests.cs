@@ -38,14 +38,14 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
             },
             InitialDataSource = new InitialDataSourceRequest
             {
-                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                Properties = new Dictionary<string, DataSourcePropertyConfigRequest>
                 {
-                    { "Name", new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() } },
+                    { "Name", new TitleDataSourcePropertyConfigRequest { Title = new Dictionary<string, object>() } },
                     {
                         "TestSelect",
-                        new SelectPropertyConfigurationRequest
+                        new SelectDataSourcePropertyConfigRequest
                         {
-                            Select = new SelectPropertyConfigurationRequest.SelectOptions
+                            Select = new SelectDataSourcePropertyConfigRequest.SelectOptions
                             {
                                 Options = new List<SelectOptionRequest>
                                 {
@@ -55,7 +55,7 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
                             }
                         }
                     },
-                    { "Number", new NumberPropertyConfigurationRequest { Number = new NumberPropertyConfigurationRequest.NumberFormat { Format = "number" } } }
+                    { "Number", new NumberDataSourcePropertyConfigRequest { Number = new NumberDataSourcePropertyConfigRequest.NumberFormat { Format = "number" } } }
                 }
             },
             Parent = new PageParentOfDatabaseRequest { PageId = _page.Id }
@@ -198,16 +198,16 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
             {
                 {
                     "Name",
-                    new UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest> {
-                        PropertyRequest = new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() }
+                    new UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest> {
+                        PropertyRequest = new TitleDataSourcePropertyConfigRequest { Title = new Dictionary<string, object>() }
                     }
                 },
                 {
                     "Test Date Property",
-                    new UpdatePropertyConfigurationRequest<DatePropertyConfigurationRequest>
+                    new UpdatePropertyConfigurationRequest<DateDataSourcePropertyConfigRequest>
                     {
                         Name = DatePropertyName,
-                        PropertyRequest = new DatePropertyConfigurationRequest
+                        PropertyRequest = new DateDataSourcePropertyConfigRequest
                         {
                             Date = new Dictionary<string, object>()
                         }
@@ -333,14 +333,14 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
             Parent = new PageParentOfDatabaseRequest() { PageId = _page.Id },
             InitialDataSource = new InitialDataSourceRequest
             {
-                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                Properties = new Dictionary<string, DataSourcePropertyConfigRequest>
                 {
-                    { "title", new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() } },
+                    { "title", new TitleDataSourcePropertyConfigRequest { Title = new Dictionary<string, object>() } },
                     {
                         "Colors1",
-                        new SelectPropertyConfigurationRequest
+                        new SelectDataSourcePropertyConfigRequest
                         {
-                            Select = new SelectPropertyConfigurationRequest.SelectOptions
+                            Select = new SelectDataSourcePropertyConfigRequest.SelectOptions
                             {
                                 Options = new List<SelectOptionRequest>
                                 {
@@ -353,9 +353,9 @@ public class PageClientTests : IntegrationTestBase, IAsyncLifetime
                     },
                     {
                         "Colors2",
-                        new SelectPropertyConfigurationRequest
+                        new SelectDataSourcePropertyConfigRequest
                         {
-                            Select = new SelectPropertyConfigurationRequest.SelectOptions
+                            Select = new SelectDataSourcePropertyConfigRequest.SelectOptions
                             {
                                 Options = new List<SelectOptionRequest>
                                 {

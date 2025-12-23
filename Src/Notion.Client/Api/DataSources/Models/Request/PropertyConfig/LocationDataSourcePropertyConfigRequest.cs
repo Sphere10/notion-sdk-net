@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class LocationPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class LocationDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
         public override string Type => "location";

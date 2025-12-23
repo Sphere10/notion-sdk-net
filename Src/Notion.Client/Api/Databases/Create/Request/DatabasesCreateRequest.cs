@@ -23,6 +23,6 @@ namespace Notion.Client
     public class InitialDataSourceRequest
     {
         [JsonProperty("properties")]
-        public Dictionary<string, PropertyConfigurationRequest> Properties { get; set; }
+        public Dictionary<string, DataSourcePropertyConfigRequest> Properties { get; set; }
     }
 }

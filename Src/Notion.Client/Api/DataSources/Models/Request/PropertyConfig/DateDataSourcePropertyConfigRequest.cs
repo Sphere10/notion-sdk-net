@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class DatePropertyConfigurationRequest : PropertyConfigurationRequest
+    public class DateDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
         public override string Type => "date";

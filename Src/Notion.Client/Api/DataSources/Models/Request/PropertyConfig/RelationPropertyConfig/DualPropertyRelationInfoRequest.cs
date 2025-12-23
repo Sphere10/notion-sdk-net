@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class DualPropertyRelationDataRequest : IRelationDataRequest
+    public class DualPropertyRelationInfoRequest : IRelationInfoRequest
     {
         public string DataSourceId { get; set; }
 

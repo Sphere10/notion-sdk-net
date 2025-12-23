@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class PhoneNumberPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class PhoneNumberDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
         public override string Type => "phone_number";

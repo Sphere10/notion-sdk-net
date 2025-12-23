@@ -43,9 +43,9 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
             },
             InitialDataSource = new InitialDataSourceRequest
             {
-                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                Properties = new Dictionary<string, DataSourcePropertyConfigRequest>
                 {
-                    { "Name", new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() } },
+                    { "Name", new TitleDataSourcePropertyConfigRequest { Title = new Dictionary<string, object>() } },
                 }
             },
             Parent = new PageParentOfDatabaseRequest { PageId = _page.Id }
@@ -100,9 +100,9 @@ public class DatabasesClientTests : IntegrationTestBase, IAsyncLifetime
             },
             InitialDataSource = new InitialDataSourceRequest
             {
-                Properties = new Dictionary<string, PropertyConfigurationRequest>
+                Properties = new Dictionary<string, DataSourcePropertyConfigRequest>
                 {
-                    { "Name", new TitlePropertyConfigurationRequest { Title = new Dictionary<string, object>() } },
+                    { "Name", new TitleDataSourcePropertyConfigRequest { Title = new Dictionary<string, object>() } },
                 }
             },
             Parent = new PageParentOfDatabaseRequest { PageId = _page.Id }

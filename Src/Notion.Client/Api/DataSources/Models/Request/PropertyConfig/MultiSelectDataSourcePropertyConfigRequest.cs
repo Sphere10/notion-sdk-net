@@ -3,18 +3,18 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class UniqueIdPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class MultiSelectDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
-        public override string Type => "unique_id";
+        public override string Type => "multi_select";
 
-        [JsonProperty("unique_id")]
-        public UniqueIdConfiguration UniqueId { get; set; }
+        [JsonProperty("multi_select")]
+        public MultiSelectOptions MultiSelect { get; set; }
 
-        public class UniqueIdConfiguration
+        public class MultiSelectOptions
         {
-            [JsonProperty("prefix")]
-            public string Prefix { get; set; }
+            [JsonProperty("options")]
+            public IEnumerable<SelectOptionRequest> Options { get; set; }
 
             /// <summary>
             /// Additional data for future compatibility

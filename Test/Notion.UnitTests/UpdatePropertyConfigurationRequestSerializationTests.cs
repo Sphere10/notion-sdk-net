@@ -8,7 +8,7 @@ namespace Notion.UnitTests;
 
 public class UpdatePropertyConfigurationRequestSerializationTests
 {
-    private string SerializeRequest<T>(UpdatePropertyConfigurationRequest<T> request) where T : PropertyConfigurationRequest
+    private string SerializeRequest<T>(UpdatePropertyConfigurationRequest<T> request) where T : DataSourcePropertyConfigRequest
     {
         // Use JsonConvert.SerializeObject directly - this should now work with our converter factory
         return JsonConvert.SerializeObject(request);
@@ -18,10 +18,10 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequest_Should_Flatten_PropertyRequest_Into_Parent_Object_Via_JsonConvert()
     {
         // Arrange
-        var request = new UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest>
+        var request = new UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest>
         {
             Name = "Test Property Name",
-            PropertyRequest = new TitlePropertyConfigurationRequest
+            PropertyRequest = new TitleDataSourcePropertyConfigRequest
             {
                 Type = "title",
                 Description = "Test description",
@@ -50,7 +50,7 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequestConverter_Should_Serialize_Only_Name_When_PropertyRequest_Is_Null()
     {
         // Arrange
-        var request = new UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest>
+        var request = new UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest>
         {
             Name = "Test Property Name",
             PropertyRequest = null
@@ -72,10 +72,10 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequestConverter_Should_Serialize_Only_PropertyRequest_Fields_When_Name_Is_Null()
     {
         // Arrange
-        var request = new UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest>
+        var request = new UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest>
         {
             Name = null,
-            PropertyRequest = new TitlePropertyConfigurationRequest
+            PropertyRequest = new TitleDataSourcePropertyConfigRequest
             {
                 Type = "title",
                 Description = "Test description",
@@ -102,7 +102,7 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequestConverter_Should_Serialize_Empty_Object_When_Both_Name_And_PropertyRequest_Are_Null()
     {
         // Arrange
-        var request = new UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest>
+        var request = new UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest>
         {
             Name = null,
             PropertyRequest = null
@@ -119,10 +119,10 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequestConverter_Should_Flatten_Different_Property_Types()
     {
         // Test with CheckboxPropertyConfigurationRequest
-        var checkboxRequest = new UpdatePropertyConfigurationRequest<CheckboxPropertyConfigurationRequest>
+        var checkboxRequest = new UpdatePropertyConfigurationRequest<CheckboxDataSourcePropertyConfigRequest>
         {
             Name = "Checkbox Property",
-            PropertyRequest = new CheckboxPropertyConfigurationRequest
+            PropertyRequest = new CheckboxDataSourcePropertyConfigRequest
             {
                 Type = "checkbox",
                 Description = "Checkbox description",
@@ -146,10 +146,10 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequestConverter_Should_Handle_PropertyRequest_With_AdditionalData()
     {
         // Arrange
-        var request = new UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest>
+        var request = new UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest>
         {
             Name = "Test Property",
-            PropertyRequest = new TitlePropertyConfigurationRequest
+            PropertyRequest = new TitleDataSourcePropertyConfigRequest
             {
                 Type = "title",
                 Description = "Test description",
@@ -183,14 +183,14 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequestConverter_Should_Handle_Complex_Property_Configuration()
     {
         // Test with UniqueIdPropertyConfigurationRequest which has nested objects
-        var request = new UpdatePropertyConfigurationRequest<UniqueIdPropertyConfigurationRequest>
+        var request = new UpdatePropertyConfigurationRequest<UniqueIdDataSourcePropertyConfigRequest>
         {
             Name = "Unique ID Property",
-            PropertyRequest = new UniqueIdPropertyConfigurationRequest
+            PropertyRequest = new UniqueIdDataSourcePropertyConfigRequest
             {
                 Type = "unique_id",
                 Description = "Unique ID description",
-                UniqueId = new UniqueIdPropertyConfigurationRequest.UniqueIdConfiguration
+                UniqueId = new UniqueIdDataSourcePropertyConfigRequest.UniqueIdConfiguration
                 {
                     Prefix = "TEST-",
                     AdditionalData = new Dictionary<string, object>
@@ -218,7 +218,7 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequestConverter_Should_Not_Support_Reading()
     {
         // Arrange
-        var converter = new UpdatePropertyConfigurationRequestConverter<TitlePropertyConfigurationRequest>();
+        var converter = new UpdatePropertyConfigurationRequestConverter<TitleDataSourcePropertyConfigRequest>();
 
         // Act & Assert
         Assert.False(converter.CanRead);
@@ -228,10 +228,10 @@ public class UpdatePropertyConfigurationRequestSerializationTests
     public void UpdatePropertyConfigurationRequestConverter_ReadJson_Should_Throw_NotImplementedException()
     {
         // Arrange
-        var converter = new UpdatePropertyConfigurationRequestConverter<TitlePropertyConfigurationRequest>();
+        var converter = new UpdatePropertyConfigurationRequestConverter<TitleDataSourcePropertyConfigRequest>();
 
         // Act & Assert
         Assert.Throws<NotImplementedException>(() =>
-            converter.ReadJson(null, typeof(UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest>), null, false, new JsonSerializer()));
+            converter.ReadJson(null, typeof(UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest>), null, false, new JsonSerializer()));
     }
 }

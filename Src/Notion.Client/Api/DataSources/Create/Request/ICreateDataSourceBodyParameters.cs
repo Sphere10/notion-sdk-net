@@ -9,7 +9,7 @@ namespace Notion.Client
         public IParentOfDataSourceRequest Parent { get; set; }
 
         [JsonProperty("properties")]
-        public IDictionary<string, PropertyConfigurationRequest> Properties { get; set; }
+        public IDictionary<string, DataSourcePropertyConfigRequest> Properties { get; set; }
 
         [JsonProperty("title")]
         public IEnumerable<RichTextBaseInput> Title { get; set; }

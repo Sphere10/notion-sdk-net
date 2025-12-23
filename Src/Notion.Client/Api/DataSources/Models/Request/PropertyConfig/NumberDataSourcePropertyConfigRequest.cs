@@ -3,18 +3,18 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class FormulaPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class NumberDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
-        public override string Type => "formula";
+        public override string Type => "number";
 
-        [JsonProperty("formula")]
-        public FormulaPropertyConfiguration Formula { get; set; }
+        [JsonProperty("number")]
+        public NumberFormat Number { get; set; }
 
-        public class FormulaPropertyConfiguration
+        public class NumberFormat
         {
-            [JsonProperty("expression")]
-            public string Expression { get; set; }
+            [JsonProperty("format")]
+            public string Format { get; set; }
 
             /// <summary>
             /// Additional data for future compatibility

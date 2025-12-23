@@ -3,18 +3,18 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class NumberPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class SelectDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
-        public override string Type => "number";
+        public override string Type => "select";
 
-        [JsonProperty("number")]
-        public NumberFormat Number { get; set; }
+        [JsonProperty("select")]
+        public SelectOptions Select { get; set; }
 
-        public class NumberFormat
+        public class SelectOptions
         {
-            [JsonProperty("format")]
-            public string Format { get; set; }
+            [JsonProperty("options")]
+            public IEnumerable<SelectOptionRequest> Options { get; set; }
 
             /// <summary>
             /// Additional data for future compatibility

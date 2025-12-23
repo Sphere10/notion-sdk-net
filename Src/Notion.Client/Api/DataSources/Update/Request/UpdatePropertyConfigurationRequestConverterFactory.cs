@@ -17,7 +17,7 @@ namespace Notion.Client
         {
             return objectType.IsGenericType &&
                    objectType.GetGenericTypeDefinition() == typeof(UpdatePropertyConfigurationRequest<>) &&
-                   typeof(PropertyConfigurationRequest).IsAssignableFrom(objectType.GetGenericArguments()[0]);
+                   typeof(DataSourcePropertyConfigRequest).IsAssignableFrom(objectType.GetGenericArguments()[0]);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

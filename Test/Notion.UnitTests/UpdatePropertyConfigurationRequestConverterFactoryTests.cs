@@ -11,13 +11,13 @@ namespace Notion.UnitTests
         public void ConverterFactory_WithSelectProperty_ShouldSerializeCorrectly()
         {
             // Arrange
-            var request = new UpdatePropertyConfigurationRequest<SelectPropertyConfigurationRequest>
+            var request = new UpdatePropertyConfigurationRequest<SelectDataSourcePropertyConfigRequest>
             {
                 Name = "Status",
-                PropertyRequest = new SelectPropertyConfigurationRequest
+                PropertyRequest = new SelectDataSourcePropertyConfigRequest
                 {
                     Description = "Task status",
-                    Select = new SelectPropertyConfigurationRequest.SelectOptions
+                    Select = new SelectDataSourcePropertyConfigRequest.SelectOptions
                     {
                         Options = new List<SelectOptionRequest>
                         {
@@ -46,10 +46,10 @@ namespace Notion.UnitTests
         public void ConverterFactory_WithTitleProperty_ShouldSerializeCorrectly()
         {
             // Arrange
-            var request = new UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest>
+            var request = new UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest>
             {
                 Name = "Task Name",
-                PropertyRequest = new TitlePropertyConfigurationRequest
+                PropertyRequest = new TitleDataSourcePropertyConfigRequest
                 {
                     Description = "Name of the task"
                 }
@@ -75,10 +75,10 @@ namespace Notion.UnitTests
             {
                 {
                     "Status",
-                    new UpdatePropertyConfigurationRequest<SelectPropertyConfigurationRequest>
+                    new UpdatePropertyConfigurationRequest<SelectDataSourcePropertyConfigRequest>
                     {
                         Name = "Status",
-                        PropertyRequest = new SelectPropertyConfigurationRequest
+                        PropertyRequest = new SelectDataSourcePropertyConfigRequest
                         {
                             Description = "Task status"
                         }
@@ -86,10 +86,10 @@ namespace Notion.UnitTests
                 },
                 {
                     "Title",
-                    new UpdatePropertyConfigurationRequest<TitlePropertyConfigurationRequest>
+                    new UpdatePropertyConfigurationRequest<TitleDataSourcePropertyConfigRequest>
                     {
                         Name = "Task Name",
-                        PropertyRequest = new TitlePropertyConfigurationRequest
+                        PropertyRequest = new TitleDataSourcePropertyConfigRequest
                         {
                             Description = "Name of the task"
                         }

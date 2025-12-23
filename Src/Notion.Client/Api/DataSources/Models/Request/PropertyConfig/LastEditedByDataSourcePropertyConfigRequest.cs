@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class LastEditedByPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class LastEditedByDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
         public override string Type => "last_edited_by";

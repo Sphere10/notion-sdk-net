@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class CheckboxPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class CheckboxDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
         public override string Type => "checkbox";

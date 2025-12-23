@@ -3,18 +3,18 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class MultiSelectPropertyConfigurationRequest : PropertyConfigurationRequest
+    public class FormulaDataSourcePropertyConfigRequest : DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
-        public override string Type => "multi_select";
+        public override string Type => "formula";
 
-        [JsonProperty("multi_select")]
-        public MultiSelectOptions MultiSelect { get; set; }
+        [JsonProperty("formula")]
+        public FormulaPropertyConfiguration Formula { get; set; }
 
-        public class MultiSelectOptions
+        public class FormulaPropertyConfiguration
         {
-            [JsonProperty("options")]
-            public IEnumerable<SelectOptionRequest> Options { get; set; }
+            [JsonProperty("expression")]
+            public string Expression { get; set; }
 
             /// <summary>
             /// Additional data for future compatibility

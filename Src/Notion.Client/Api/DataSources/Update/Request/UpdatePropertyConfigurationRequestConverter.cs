@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 namespace Notion.Client
 {
     // write custom json convert for UpdatePropertyConfigurationRequest to flatten PropertyRequest into parent object
-    public class UpdatePropertyConfigurationRequestConverter<T> : JsonConverter<UpdatePropertyConfigurationRequest<T>> where T : PropertyConfigurationRequest
+    public class UpdatePropertyConfigurationRequestConverter<T> : JsonConverter<UpdatePropertyConfigurationRequest<T>> where T : DataSourcePropertyConfigRequest
     {
         public override bool CanRead => false;
 

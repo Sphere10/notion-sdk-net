@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class PropertyConfigurationRequest
+    public class DataSourcePropertyConfigRequest
     {
         [JsonProperty("type")]
         public virtual string Type { get; set; }
