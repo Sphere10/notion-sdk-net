@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class CheckboxDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class CheckboxDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Checkbox;
+        public override string Type => DataSourcePropertyTypes.Checkbox;
 
         [JsonProperty("checkbox")]
         public Dictionary<string, object> Checkbox { get; set; }

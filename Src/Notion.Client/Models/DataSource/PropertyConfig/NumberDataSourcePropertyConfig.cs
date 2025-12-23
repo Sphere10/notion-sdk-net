@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class NumberDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class NumberDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Number;
+        public override string Type => DataSourcePropertyTypes.Number;
 
         [JsonProperty("number")]
         public NumberResponse Number { get; set; }

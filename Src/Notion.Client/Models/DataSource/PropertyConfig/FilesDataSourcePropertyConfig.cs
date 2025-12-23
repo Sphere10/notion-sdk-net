@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class FilesDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class FilesDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Files;
+        public override string Type => DataSourcePropertyTypes.Files;
 
         [JsonProperty("files")]
         public Dictionary<string, object> Files { get; set; }

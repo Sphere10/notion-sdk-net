@@ -6,9 +6,9 @@ using Newtonsoft.Json.Converters;
 namespace Notion.Client
 {
     [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
-    public class SelectDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class SelectDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Select;
+        public override string Type => DataSourcePropertyTypes.Select;
 
         public OptionWrapper<SelectOptionResponse> Select { get; set; }
     }

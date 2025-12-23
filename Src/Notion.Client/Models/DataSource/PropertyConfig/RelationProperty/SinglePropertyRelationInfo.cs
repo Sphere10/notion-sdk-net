@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class SinglePropertyRelationResponse : RelationDataResponse
+    public class SinglePropertyRelationInfo : RelationInfo
     {
         public override string Type => "single_property";
 

@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class EmailDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class EmailDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Email;
+        public override string Type => DataSourcePropertyTypes.Email;
 
         [JsonProperty("email")]
         public Dictionary<string, object> Email { get; set; }

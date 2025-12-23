@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class StatusDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class StatusDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Status;
+        public override string Type => DataSourcePropertyTypes.Status;
 
         [JsonProperty("status")]
         public Dictionary<string, object> Status { get; set; }

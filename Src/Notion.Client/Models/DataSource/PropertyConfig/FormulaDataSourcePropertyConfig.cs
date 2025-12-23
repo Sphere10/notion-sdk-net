@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class FormulaDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class FormulaDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Formula;
+        public override string Type => DataSourcePropertyTypes.Formula;
 
         [JsonProperty("formula")]
         public FormulaResponse Formula { get; set; }

@@ -65,7 +65,7 @@ namespace Notion.Client
         /// The properties schema of the data source.
         /// </summary>
         [JsonProperty("properties")]
-        public IDictionary<string, DataSourcePropertyConfigResponse> Properties { get; set; }
+        public IDictionary<string, DataSourcePropertyConfig> Properties { get; set; }
 
         /// <summary>
         /// The icon of the data source.

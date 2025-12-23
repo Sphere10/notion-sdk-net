@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class ButtonDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class ButtonDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Button;
+        public override string Type => DataSourcePropertyTypes.Button;
 
         [JsonProperty("button")]
         public Dictionary<string, object> Button { get; set; }

@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class RollupDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class RollupDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Rollup;
+        public override string Type => DataSourcePropertyTypes.Rollup;
 
         [JsonProperty("rollup")]
         public RollupResponse Rollup { get; set; }

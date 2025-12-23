@@ -1,6 +1,6 @@
 ﻿namespace Notion.Client
 {
-    public static class DataSourcePropertyType
+    public static class DataSourcePropertyTypes
     {
         public const string Title = "title";
         public const string RichText = "rich_text";

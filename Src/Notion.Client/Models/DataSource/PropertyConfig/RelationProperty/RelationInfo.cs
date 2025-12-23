@@ -6,9 +6,9 @@ using Newtonsoft.Json.Converters;
 namespace Notion.Client
 {
     [JsonConverter(typeof(JsonSubtypes), "type")]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(SinglePropertyRelationResponse), "single_property")]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(DualPropertyRelationResponse), "dual_property")]
-    public abstract class RelationDataResponse
+    [JsonSubtypes.KnownSubTypeAttribute(typeof(SinglePropertyRelationInfo), "single_property")]
+    [JsonSubtypes.KnownSubTypeAttribute(typeof(DualPropertyRelationInfo), "dual_property")]
+    public abstract class RelationInfo
     {
         [JsonProperty("database_id")]
         public string DatabaseId { get; set; }

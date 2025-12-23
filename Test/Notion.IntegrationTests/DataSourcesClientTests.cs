@@ -255,16 +255,16 @@ namespace Notion.IntegrationTests
             response.Properties.Should().NotBeNull();
 
             response.Properties.Should().ContainKey("Single Relation");
-            var singleRelation = response.Properties["Single Relation"].As<RelationDataSourcePropertyConfigResponse>().Relation;
+            var singleRelation = response.Properties["Single Relation"].As<RelationDataSourcePropertyConfig>().Relation;
             singleRelation.Type.Should().Be("single_property");
-            var singleRelationData = singleRelation.Should().BeOfType<SinglePropertyRelationResponse>().Subject;
+            var singleRelationData = singleRelation.Should().BeOfType<SinglePropertyRelationInfo>().Subject;
             singleRelationData.DataSourceId.Should().Be(sourceDataSourceId);
 
             response.Properties.Should().ContainKey("Dual Relation");
-            var dualRelation = response.Properties["Dual Relation"].As<RelationDataSourcePropertyConfigResponse>().Relation;
+            var dualRelation = response.Properties["Dual Relation"].As<RelationDataSourcePropertyConfig>().Relation;
             dualRelation.DataSourceId.Should().Be(sourceDataSourceId);
             dualRelation.Type.Should().Be("dual_property");
-            dualRelation.Should().BeOfType<DualPropertyRelationResponse>();
+            dualRelation.Should().BeOfType<DualPropertyRelationInfo>();
         }
 
         private async Task<Database> CreateDatabaseWithAPageAsync(string databaseName)

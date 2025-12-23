@@ -2,9 +2,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class MultiSelectDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class MultiSelectDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.MultiSelect;
+        public override string Type => DataSourcePropertyTypes.MultiSelect;
 
         [JsonProperty("multi_select")]
         public OptionWrapper<SelectOptionResponse> MultiSelect { get; set; }

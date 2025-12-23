@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class UrlDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class UrlDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.Url;
+        public override string Type => DataSourcePropertyTypes.Url;
 
         [JsonProperty("url")]
         public Dictionary<string, object> Url { get; set; }

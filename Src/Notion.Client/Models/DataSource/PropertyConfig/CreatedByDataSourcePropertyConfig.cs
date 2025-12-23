@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class CreatedByDataSourcePropertyConfigResponse : DataSourcePropertyConfigResponse
+    public class CreatedByDataSourcePropertyConfig : DataSourcePropertyConfig
     {
-        public override string Type => DataSourcePropertyType.CreatedBy;
+        public override string Type => DataSourcePropertyTypes.CreatedBy;
 
         [JsonProperty("created_by")]
         public Dictionary<string, object> CreatedBy { get; set; }
