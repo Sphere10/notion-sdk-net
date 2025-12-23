@@ -1,6 +1,6 @@
 namespace Notion.Client
 {
-    public class RetrieveDataSourceResponse : DataSourceResponse
+    public class RetrieveDataSourceResponse : DataSource
     {
     }
 }

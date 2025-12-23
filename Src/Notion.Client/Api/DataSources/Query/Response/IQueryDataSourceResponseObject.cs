@@ -5,7 +5,7 @@ namespace Notion.Client
 {
     [JsonConverter(typeof(JsonSubtypes), "type")]
     [JsonSubtypes.KnownSubTypeAttribute(typeof(Page), ObjectType.Page)]
-    [JsonSubtypes.KnownSubTypeAttribute(typeof(DataSourceResponse), ObjectType.DataSource)]
+    [JsonSubtypes.KnownSubTypeAttribute(typeof(DataSource), ObjectType.DataSource)]
     public interface IQueryDataSourceResponseObject : IObject
     {
     }
