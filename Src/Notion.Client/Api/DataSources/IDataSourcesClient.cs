@@ -11,7 +11,7 @@ namespace Notion.Client
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<RetrieveDataSourceResponse> RetrieveAsync(
+        Task<DataSource> RetrieveAsync(
             RetrieveDataSourceRequest request,
             CancellationToken cancellationToken = default
         );
@@ -22,7 +22,7 @@ namespace Notion.Client
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<CreateDataSourceResponse> CreateAsync(
+        Task<DataSource> CreateAsync(
             CreateDataSourceRequest request,
             CancellationToken cancellationToken = default
         );
@@ -33,7 +33,7 @@ namespace Notion.Client
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<UpdateDataSourceResponse> UpdateAsync(
+        Task<DataSource> UpdateAsync(
             UpdateDataSourceRequest request,
             CancellationToken cancellationToken = default
         );

@@ -6,7 +6,7 @@ namespace Notion.Client
 {
     public sealed partial class DataSourcesClient
     {
-        public async Task<CreateDataSourceResponse> CreateAsync(
+        public async Task<DataSource> CreateAsync(
             CreateDataSourceRequest request,
             CancellationToken cancellationToken = default)
         {
@@ -37,7 +37,7 @@ namespace Notion.Client
                 throw new ArgumentException("Properties cannot be null or empty.", nameof(body.Properties));
             }
 
-            return await _restClient.PostAsync<CreateDataSourceResponse>(
+            return await _restClient.PostAsync<DataSource>(
                 endpoint,
                 body,
                 cancellationToken: cancellationToken

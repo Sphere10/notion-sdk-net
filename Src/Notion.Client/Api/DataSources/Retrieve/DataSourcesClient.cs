@@ -6,7 +6,7 @@ namespace Notion.Client
 {
     public sealed partial class DataSourcesClient
     {
-        public async Task<RetrieveDataSourceResponse> RetrieveAsync(
+        public async Task<DataSource> RetrieveAsync(
             RetrieveDataSourceRequest request,
             CancellationToken cancellationToken = default)
         {
@@ -24,7 +24,7 @@ namespace Notion.Client
 
             var endpoint = ApiEndpoints.DataSourcesApiUrls.Retrieve(pathParameters);
 
-            return await _restClient.GetAsync<RetrieveDataSourceResponse>(endpoint, cancellationToken: cancellationToken);
+            return await _restClient.GetAsync<DataSource>(endpoint, cancellationToken: cancellationToken);
         }
     }
 }

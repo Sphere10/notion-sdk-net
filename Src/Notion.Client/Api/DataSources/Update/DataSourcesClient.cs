@@ -6,7 +6,7 @@ namespace Notion.Client
 {
     public sealed partial class DataSourcesClient
     {
-        public async Task<UpdateDataSourceResponse> UpdateAsync(
+        public async Task<DataSource> UpdateAsync(
             UpdateDataSourceRequest request,
             CancellationToken cancellationToken = default)
         {
@@ -25,7 +25,7 @@ namespace Notion.Client
             // Create a clean body request with only the properties that should be serialized
             var bodyRequest = UpdateDataSourceBodyRequest.FromRequest(request);
 
-            return await _restClient.PatchAsync<UpdateDataSourceResponse>(
+            return await _restClient.PatchAsync<DataSource>(
                 path,
                 bodyRequest,
                 cancellationToken: cancellationToken

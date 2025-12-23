@@ -57,7 +57,7 @@ public class DataSourcesClientTests
     {
         // Arrange
         var dataSourceId = "test-data-source-id";
-        var expectedDataSource = new RetrieveDataSourceResponse
+        var expectedDataSource = new DataSource
         {
             Id = dataSourceId,
             Title = new RichTextBase[]
@@ -78,7 +78,7 @@ public class DataSourcesClientTests
         };
 
         _restClient
-            .Setup(client => client.GetAsync<RetrieveDataSourceResponse>(ApiEndpoints.DataSourcesApiUrls.Retrieve(request), null, null, null, _cancellationToken))
+            .Setup(client => client.GetAsync<DataSource>(ApiEndpoints.DataSourcesApiUrls.Retrieve(request), null, null, null, _cancellationToken))
             .ReturnsAsync(expectedDataSource);
 
         // Act
