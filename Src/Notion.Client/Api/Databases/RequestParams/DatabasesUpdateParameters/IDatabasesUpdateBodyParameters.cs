@@ -12,7 +12,7 @@ namespace Notion.Client
         List<RichTextBaseInput> Title { get; set; }
 
         [JsonProperty("icon")]
-        IPageIcon Icon { get; set; }
+        IPageIconRequest Icon { get; set; }
 
         [JsonProperty("cover")]
         FileObject Cover { get; set; }

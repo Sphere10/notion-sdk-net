@@ -6,7 +6,7 @@ namespace Notion.Client
     public class PagesUpdateParameters : IPagesUpdateBodyParameters
     {
         [JsonProperty("icon")]
-        public IPageIcon Icon { get; set; }
+        public IPageIconRequest Icon { get; set; }
 
         [JsonProperty("cover")]
         public FileObject Cover { get; set; }

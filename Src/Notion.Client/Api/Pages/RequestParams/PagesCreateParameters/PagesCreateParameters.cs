@@ -11,7 +11,7 @@ namespace Notion.Client
 
         public IList<IBlock> Children { get; set; }
 
-        public IPageIcon Icon { get; set; }
+        public IPageIconRequest Icon { get; set; }
 
         public FileObject Cover { get; set; }
     }

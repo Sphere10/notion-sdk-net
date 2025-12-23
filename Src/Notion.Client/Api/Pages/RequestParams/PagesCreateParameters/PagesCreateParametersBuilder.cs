@@ -9,7 +9,7 @@ namespace Notion.Client
         private readonly IList<IBlock> _children = new List<IBlock>();
         private readonly Dictionary<string, PropertyValue> _properties = new();
         private FileObject _cover;
-        private IPageIcon _icon;
+        private IPageIconRequest _icon;
         private IParentOfPageRequest _parent;
 
         private PagesCreateParametersBuilder()
@@ -35,7 +35,7 @@ namespace Notion.Client
             return this;
         }
 
-        public PagesCreateParametersBuilder SetIcon(IPageIcon pageIcon)
+        public PagesCreateParametersBuilder SetIcon(IPageIconRequest pageIcon)
         {
             _icon = pageIcon;
 

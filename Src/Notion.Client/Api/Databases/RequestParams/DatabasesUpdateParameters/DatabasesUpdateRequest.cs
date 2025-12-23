@@ -9,7 +9,7 @@ namespace Notion.Client
 
         public List<RichTextBaseInput> Title { get; set; }
 
-        public IPageIcon Icon { get; set; }
+        public IPageIconRequest Icon { get; set; }
 
         public FileObject Cover { get; set; }
 
