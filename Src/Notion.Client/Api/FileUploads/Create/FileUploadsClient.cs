@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Notion.Client
 {
-    public sealed partial class FileUploadsClient : IFileUploadsClient
+    public sealed partial class FileUploadsClient
     {
         public async Task<CreateFileUploadResponse> CreateAsync(
             CreateFileUploadRequest fileUploadObjectRequest,
