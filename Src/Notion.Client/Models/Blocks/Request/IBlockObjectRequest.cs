@@ -1,5 +1,4 @@
-﻿using JsonSubTypes;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Notion.Client

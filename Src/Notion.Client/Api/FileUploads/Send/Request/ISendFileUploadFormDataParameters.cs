@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Notion.Client
+﻿namespace Notion.Client
 {
     public interface ISendFileUploadFormDataParameters
     {
