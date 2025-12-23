@@ -37,10 +37,10 @@ namespace Notion.Client
         public IPageIcon Icon { get; set; }
 
         /// <summary>
-        ///     Page cover image.
+        /// The cover image of the page.
         /// </summary>
         [JsonProperty("cover")]
-        public FileObject Cover { get; set; }
+        public IPageCover Cover { get; set; }
 
         /// <summary>
         ///     Object type

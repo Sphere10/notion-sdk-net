@@ -3,12 +3,12 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class FilePageCoverResponse : IPageCoverResponse
+    public class ExternalPageCover : IPageCover
     {
-        public string Type { get; set; } = "file";
+        public string Type { get; set; } = "external";
 
-        [JsonProperty("file")]
-        public InternalFileInfo File { get; set; }
+        [JsonProperty("external")]
+        public ExternalFileInfo External { get; set; }
 
         [JsonExtensionData]
         public IDictionary<string, object> AdditionalData { get; set; }

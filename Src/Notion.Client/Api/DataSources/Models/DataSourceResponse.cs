@@ -77,7 +77,7 @@ namespace Notion.Client
         /// The cover image of the data source.
         /// </summary>
         [JsonProperty("cover")]
-        public IPageCoverResponse Cover { get; set; }
+        public IPageCover Cover { get; set; }
 
         /// <summary>
         /// The URL of the data source.

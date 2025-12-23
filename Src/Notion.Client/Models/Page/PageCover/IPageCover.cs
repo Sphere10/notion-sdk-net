@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public interface IPageCoverResponse
+    public interface IPageCover
     {
         [JsonProperty("type")]
         string Type { get; set; }

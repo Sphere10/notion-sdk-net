@@ -56,8 +56,11 @@ namespace Notion.Client
         [JsonProperty("icon")]
         public IPageIcon Icon { get; set; }
 
+        /// <summary>
+        /// The cover image of the database.
+        /// </summary>
         [JsonProperty("cover")]
-        public FileObject Cover { get; set; }
+        public IPageCover Cover { get; set; }
 
         /// <summary>
         ///     The URL of the Notion database.
