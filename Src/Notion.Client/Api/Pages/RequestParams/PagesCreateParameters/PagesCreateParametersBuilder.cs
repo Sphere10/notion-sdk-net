@@ -8,7 +8,7 @@ namespace Notion.Client
     {
         private readonly IList<IBlock> _children = new List<IBlock>();
         private readonly Dictionary<string, PropertyValue> _properties = new();
-        private FileObject _cover;
+        private IPageCoverRequest _cover;
         private IPageIconRequest _icon;
         private IParentOfPageRequest _parent;
 
@@ -42,7 +42,7 @@ namespace Notion.Client
             return this;
         }
 
-        public PagesCreateParametersBuilder SetCover(FileObject pageCover)
+        public PagesCreateParametersBuilder SetCover(IPageCoverRequest pageCover)
         {
             _cover = pageCover;
 

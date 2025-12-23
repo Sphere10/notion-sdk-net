@@ -18,6 +18,6 @@ namespace Notion.Client
         IPageIconRequest Icon { get; set; }
 
         [JsonProperty("cover")]
-        FileObject Cover { get; set; }
+        IPageCoverRequest Cover { get; set; }
     }
 }

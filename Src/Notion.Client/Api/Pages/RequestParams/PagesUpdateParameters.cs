@@ -9,7 +9,7 @@ namespace Notion.Client
         public IPageIconRequest Icon { get; set; }
 
         [JsonProperty("cover")]
-        public FileObject Cover { get; set; }
+        public IPageCoverRequest Cover { get; set; }
 
         [JsonProperty("in_trash")]
         public bool InTrash { get; set; }

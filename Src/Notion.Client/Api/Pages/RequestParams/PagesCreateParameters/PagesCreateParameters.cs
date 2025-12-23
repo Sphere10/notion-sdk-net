@@ -13,6 +13,6 @@ namespace Notion.Client
 
         public IPageIconRequest Icon { get; set; }
 
-        public FileObject Cover { get; set; }
+        public IPageCoverRequest Cover { get; set; }
     }
 }

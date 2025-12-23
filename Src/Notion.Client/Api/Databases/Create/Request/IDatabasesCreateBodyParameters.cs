@@ -45,6 +45,6 @@ namespace Notion.Client
         /// Cover image for the database.
         /// </summary>
         [JsonProperty("cover")]
-        public FileObject Cover { get; set; }
+        public IPageCoverRequest Cover { get; set; }
     }
 }
