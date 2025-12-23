@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Notion.Client
 {
-    public class FileObjectResponse : IObject
+    public class FileUpload : IObject
     {
         public string Id { get; set; }
         public ObjectType Object => ObjectType.FileUpload;

@@ -1,6 +1,6 @@
 namespace Notion.Client
 {
-    public class SendFileUploadResponse : FileObjectResponse
+    public class SendFileUploadResponse : FileUpload
     {
     }
 }

@@ -202,7 +202,7 @@ public class FileUploadsClientTests
             ))
             .ReturnsAsync(new ListFileUploadsResponse
             {
-                Results = new List<FileObjectResponse>
+                Results = new List<FileUpload>
                 {
                     new() { Id = "file1", Status = "completed" },
                     new() { Id = "file2", Status = "completed" }
