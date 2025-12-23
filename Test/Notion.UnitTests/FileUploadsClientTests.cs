@@ -41,14 +41,14 @@ public class FileUploadsClientTests
             Mode = FileUploadMode.SinglePart,
         };
 
-        var expectedResponse = new CreateFileUploadResponse
+        var expectedResponse = new FileUpload
         {
             UploadUrl = "https://example.com/upload",
             Id = Guid.NewGuid().ToString(),
         };
 
         _restClientMock
-            .Setup(client => client.PostAsync<CreateFileUploadResponse>(
+            .Setup(client => client.PostAsync<FileUpload>(
                 It.Is<string>(url => url == ApiEndpoints.FileUploadsApiUrls.Create()),
                 It.IsAny<ICreateFileUploadBodyParameters>(),
                 It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
@@ -114,14 +114,14 @@ public class FileUploadsClientTests
         // Arrange
         var request = SendFileUploadRequest.Create(fileUploadId: "valid-id", file: new FileData { FileName = "testfile.txt", Data = new System.IO.MemoryStream(), ContentType = "text/plain" }, partNumber: partNumber);
 
-        var expectedResponse = new SendFileUploadResponse
+        var expectedResponse = new FileUpload
         {
             Id = "valid-id",
             Status = "uploaded",
         };
 
         _restClientMock
-            .Setup(client => client.PostAsync<SendFileUploadResponse>(
+            .Setup(client => client.PostAsync<FileUpload>(
                 It.Is<string>(url => url == ApiEndpoints.FileUploadsApiUrls.Send("valid-id")),
                 It.IsAny<ISendFileUploadFormDataParameters>(),
                 It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
@@ -154,14 +154,14 @@ public class FileUploadsClientTests
             }
         );
 
-        var expectedResponse = new SendFileUploadResponse
+        var expectedResponse = new FileUpload
         {
             Id = fileUploadId.ToString(),
             Status = "uploaded",
         };
 
         _restClientMock
-            .Setup(client => client.PostAsync<SendFileUploadResponse>(
+            .Setup(client => client.PostAsync<FileUpload>(
                 It.Is<string>(url => url == ApiEndpoints.FileUploadsApiUrls.Send(fileUploadId)),
                 It.IsAny<ISendFileUploadFormDataParameters>(),
                 It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
@@ -248,7 +248,7 @@ public class FileUploadsClientTests
             FileUploadId = fileUploadId
         };
 
-        var expectedResponse = new RetrieveFileUploadResponse
+        var expectedResponse = new FileUpload
         {
             Id = fileUploadId,
             FileName = "testfile.txt",
@@ -256,7 +256,7 @@ public class FileUploadsClientTests
         };
 
         _restClientMock
-            .Setup(client => client.GetAsync<RetrieveFileUploadResponse>(
+            .Setup(client => client.GetAsync<FileUpload>(
                 It.Is<string>(url => url == ApiEndpoints.FileUploadsApiUrls.Retrieve(request)),
                 It.IsAny<IDictionary<string, string>>(),
                 null,

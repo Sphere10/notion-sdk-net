@@ -11,7 +11,7 @@ namespace Notion.Client
         /// <param name="fileUploadObjectRequest"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<CreateFileUploadResponse> CreateAsync(
+        Task<FileUpload> CreateAsync(
             CreateFileUploadRequest fileUploadObjectRequest,
             CancellationToken cancellationToken = default
         );
@@ -25,7 +25,7 @@ namespace Notion.Client
         /// <param name="sendFileUploadRequest"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<SendFileUploadResponse> SendAsync(
+        Task<FileUpload> SendAsync(
             SendFileUploadRequest sendFileUploadRequest,
             CancellationToken cancellationToken = default
         );
@@ -36,7 +36,7 @@ namespace Notion.Client
         /// <param name="completeFileUploadRequest"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<CompleteFileUploadResponse> CompleteAsync(
+        Task<FileUpload> CompleteAsync(
             CompleteFileUploadRequest completeFileUploadRequest,
             CancellationToken cancellationToken = default
         );
@@ -58,7 +58,7 @@ namespace Notion.Client
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<RetrieveFileUploadResponse> RetrieveAsync(
+        Task<FileUpload> RetrieveAsync(
             RetrieveFileUploadRequest request,
             CancellationToken cancellationToken = default
         );

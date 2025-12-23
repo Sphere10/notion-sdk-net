@@ -6,7 +6,7 @@ namespace Notion.Client
 {
     public sealed partial class FileUploadsClient
     {
-        public async Task<RetrieveFileUploadResponse> RetrieveAsync(
+        public async Task<FileUpload> RetrieveAsync(
             RetrieveFileUploadRequest request,
             CancellationToken cancellationToken = default)
         {
@@ -19,7 +19,7 @@ namespace Notion.Client
 
             var endpoint = ApiEndpoints.FileUploadsApiUrls.Retrieve(pathParameters);
 
-            return await _restClient.GetAsync<RetrieveFileUploadResponse>(
+            return await _restClient.GetAsync<FileUpload>(
                 endpoint,
                 cancellationToken: cancellationToken
             );
