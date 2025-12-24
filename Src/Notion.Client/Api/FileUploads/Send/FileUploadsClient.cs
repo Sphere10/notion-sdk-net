@@ -6,7 +6,7 @@ namespace Notion.Client
 {
     public sealed partial class FileUploadsClient
     {
-        public async Task<SendFileUploadResponse> SendAsync(
+        public async Task<FileUpload> SendAsync(
             SendFileUploadRequest sendFileUploadRequest,
             CancellationToken cancellationToken = default)
         {
@@ -30,7 +30,7 @@ namespace Notion.Client
 
             var path = ApiEndpoints.FileUploadsApiUrls.Send(sendFileUploadRequest.FileUploadId);
 
-            return await _restClient.PostAsync<SendFileUploadResponse>(
+            return await _restClient.PostAsync<FileUpload>(
                 path,
                 formData: sendFileUploadRequest,
                 cancellationToken: cancellationToken

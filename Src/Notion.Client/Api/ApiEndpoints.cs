@@ -148,5 +148,15 @@
             public static string List => "/v1/file_uploads";
             public static string Retrieve(IRetrieveFileUploadPathParameters pathParameters) => $"/v1/file_uploads/{pathParameters.FileUploadId}";
         }
+
+        public static class DataSourcesApiUrls
+        {
+            private const string BasePath = "/v1/data_sources";
+            public static string Retrieve(IRetrieveDataSourcePathParameters pathParameters) => $"{BasePath}/{pathParameters.DataSourceId}";
+            internal static string CreateDataSource() => BasePath;
+            internal static string Update(IUpdateDataSourcePathParameters pathParameters) => $"{BasePath}/{pathParameters.DataSourceId}";
+            internal static string ListDataSourceTemplates(IListDataSourceTemplatesPathParameters pathParameters) => $"/v1/data-sources/{pathParameters.DataSourceId}/templates";
+            internal static string Query(IQueryDataSourcePathParameters pathParameters) => $"{BasePath}/{pathParameters.DataSourceId}/query";
+        }
     }
 }

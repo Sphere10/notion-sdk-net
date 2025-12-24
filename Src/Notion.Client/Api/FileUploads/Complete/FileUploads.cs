@@ -6,7 +6,7 @@ namespace Notion.Client
 {
     public sealed partial class FileUploadsClient
     {
-        public async Task<CompleteFileUploadResponse> CompleteAsync(
+        public async Task<FileUpload> CompleteAsync(
             CompleteFileUploadRequest completeFileUploadRequest,
             CancellationToken cancellationToken = default)
         {
@@ -22,7 +22,7 @@ namespace Notion.Client
 
             var path = ApiEndpoints.FileUploadsApiUrls.Complete(completeFileUploadRequest.FileUploadId);
 
-            return await _restClient.PostAsync<CompleteFileUploadResponse>(
+            return await _restClient.PostAsync<FileUpload>(
                 path,
                 body: null,
                 cancellationToken: cancellationToken
