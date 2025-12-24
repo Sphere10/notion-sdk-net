@@ -60,8 +60,8 @@ public class DataSourcesClientTests
         var expectedDataSource = new DataSource
         {
             Id = dataSourceId,
-            Title = new RichTextBase[]
-            {
+            Title =
+            [
                 new RichTextText
                 {
                     Text = new Text
@@ -69,7 +69,7 @@ public class DataSourcesClientTests
                         Content = "Test Data Source"
                     }
                 }
-            }
+            ]
         };
 
         var request = new RetrieveDataSourceRequest
@@ -126,8 +126,8 @@ public class DataSourcesClientTests
         var dataSourceId = "test-data-source-id";
         var expectedResponse = new ListDataSourceTemplatesResponse
         {
-            Templates = new[]
-            {
+            Templates =
+            [
                 new DataSourceTemplate
                 {
                     Id = "template-1",
@@ -140,7 +140,7 @@ public class DataSourcesClientTests
                     Name = "Custom Template",
                     IsDefault = false
                 }
-            },
+            ],
             HasMore = false,
             NextCursor = null
         };
@@ -188,15 +188,15 @@ public class DataSourcesClientTests
 
         var expectedResponse = new ListDataSourceTemplatesResponse
         {
-            Templates = new[]
-            {
+            Templates =
+            [
                 new DataSourceTemplate
                 {
                     Id = "template-1",
                     Name = templateName,
                     IsDefault = false
                 }
-            },
+            ],
             HasMore = true,
             NextCursor = "next-cursor456"
         };
@@ -251,7 +251,7 @@ public class DataSourcesClientTests
         var dataSourceId = "test-data-source-id";
         var expectedResponse = new ListDataSourceTemplatesResponse
         {
-            Templates = new DataSourceTemplate[0],
+            Templates = [],
             HasMore = false,
             NextCursor = null
         };
@@ -297,7 +297,7 @@ public class DataSourcesClientTests
 
         var expectedResponse = new ListDataSourceTemplatesResponse
         {
-            Templates = new DataSourceTemplate[0],
+            Templates = [],
             HasMore = false,
             NextCursor = null
         };
@@ -347,7 +347,7 @@ public class DataSourcesClientTests
 
         var expectedResponse = new ListDataSourceTemplatesResponse
         {
-            Templates = new DataSourceTemplate[0],
+            Templates = [],
             HasMore = false,
             NextCursor = null
         };
