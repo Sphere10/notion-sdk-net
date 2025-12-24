@@ -41,6 +41,7 @@ dotnet add package Notion.Net
 **Note:** Default Notion-Version used by NuGet package versions
 | Package version | Notion-Version |
 | --- | --- |
+| 5.0.0-preview+ | 2025-09-03 |
 | 4.4.0+ | 2022-06-28 |
 | 4.3.0+ | 2022-06-28 | 
 | 4.0.0+ | 2022-06-28 | 
@@ -96,37 +97,6 @@ public class MyService
 }
 ```
 
-### Querying a database
-
-After you initialized your client and got an id of a database, you can query it for any contained pages. You can add filters and sorts to your request. Here is a simple example:
-
-```C#
-// Date filter for page property called "When"
-var dateFilter = new DateFilter("When", onOrAfter: DateTime.Now);
-
-var queryParams = new DatabasesQueryParameters { Filter = dateFilter };
-var pages = await client.Databases.QueryAsync(databaseId, queryParams);
-```
-
-Filters constructors contain all possible filter conditions, but you need to choose only condition per filter, all other should be `null`. So, for example this code would not filter by 2 conditions as one might expect:
-
-```C#
-var filter = new TextFilter("Name", startsWith: "Mr", contains: "John"); // WRONG FILTER USAGE
-
-```
-
-To use complex filters, use class `CompoundFilter`. It allows adding many filters and even nesting compound filters into each other (it works as filter group in Notion interface). Here is an example of filter that would return pages that were due in past month AND either had a certain assignee OR had high urgency:
-
-```C#
-var selectFilter = new SelectFilter("Urgency", equal: "High");
-var assigneeFilter = new PeopleFilter("Assignee", contains: "some-uuid");
-var dateFilter = new DateFilter("Due", pastMonth: new Dictionary<string, object>());
-
-var orGroup = new List<Filter> { assigneeFilter, selectFilter };
-var complexFiler = new CompoundFilter(
-    and: new List<Filter> { dateFilter, new CompoundFilter(or: orGroup) }
-);
-```
 
 ## Supported Endpoints
 
@@ -166,6 +136,12 @@ var complexFiler = new CompoundFilter(
   - [x] Complete file upload (for multi-part uploads)
   - [x] List file uploads
   - [x] Retrieve file upload
+- [x] **Data Sources**
+  - [x] Retrieve a data source
+  - [x] Create a data source
+  - [x] Update a data source
+  - [x] Query a data source
+  - [x] List data source templates
 
 ## Enable internal logs
 The library make use of `ILoggerFactory` interface exposed by `Microsoft.Extensions.Logging`. Which allow you to have ability to enable the internal logs when developing application to get additional information.
@@ -284,6 +260,25 @@ var sendResponse = await client.FileUploads.SendAsync(new SendFileUploadRequest
     FileUploadId = fileUpload.Id,
     FileContent = fileBytes
 });
+```
+
+### Data Sources
+```csharp
+// Retrieve a data source
+var dataSource = await client.DataSources.RetrieveAsync(new RetrieveDataSourceRequest
+{
+    DataSourceId = dataSourceId
+});
+
+// Query a data source
+var queryResult = await client.DataSources.QueryAsync(new QueryDataSourceRequest
+{
+    DataSourceId = dataSourceId,
+    Filter = new DataSourceFilter { /* your filter criteria */ }
+});
+
+// List data source templates
+var templates = await client.DataSources.ListTemplatesAsync(new ListDataSourceTemplatesRequest());
 ```
 
 ## Contributors
